@@ -1,0 +1,902 @@
+[
+    {
+        "item_id": "wpn_01",
+        "name": "Kunai",
+        "level": 1,
+        "price_gold": 70,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_02",
+        "name": "Sickle",
+        "level": 2,
+        "price_gold": 140,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_03",
+        "name": "Sai",
+        "level": 3,
+        "price_gold": 210,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_09",
+        "name": "Shark Skin Sword",
+        "level": 80,
+        "price_gold": 0,
+        "price_tokens": 10000,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_12",
+        "name": "Pointed Edge Kunai",
+        "level": 7,
+        "price_gold": 2700,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_14",
+        "name": "Arrow Head Kunai",
+        "level": 4,
+        "price_gold": 280,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_23",
+        "name": "Short Serpent Sickle",
+        "level": 6,
+        "price_gold": 420,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_24",
+        "name": "Spring Kunai",
+        "level": 5,
+        "price_gold": 360,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_219",
+        "name": "Double Blade Claw",
+        "level": 6,
+        "price_gold": 430,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_237",
+        "name": "Iron Chained Kama",
+        "level": 7,
+        "price_gold": 450,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_202",
+        "name": "Light Combat Knife",
+        "level": 8,
+        "price_gold": 460,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_19",
+        "name": "Tiger Tooth Kunai",
+        "level": 9,
+        "price_gold": 530,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_36",
+        "name": "Manji Sai",
+        "level": 6,
+        "price_gold": 460,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_39",
+        "name": "Small Tooth Kunai",
+        "level": 10,
+        "price_gold": 580,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_50",
+        "name": "Iron Dagger",
+        "level": 10,
+        "price_gold": 560,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_111",
+        "name": "Kotetsu",
+        "level": 10,
+        "price_gold": 0,
+        "price_tokens": 400,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_31",
+        "name": "Elegant Sai",
+        "level": 12,
+        "price_gold": 710,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_59",
+        "name": "Scorpion Tail Blade",
+        "level": 33,
+        "price_gold": 6710,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_28",
+        "name": "Chrome Sai",
+        "level": 11,
+        "price_gold": 640,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_27",
+        "name": "Knife Edge Kunai",
+        "level": 12,
+        "price_gold": 710,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_16",
+        "name": "Ultimate Arrow Head Kunai",
+        "level": 13,
+        "price_gold": 770,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_47",
+        "name": "Crescent Butcher Knife",
+        "level": 14,
+        "price_gold": 800,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_21",
+        "name": "Midori Sai",
+        "level": 15,
+        "price_gold": 900,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_42",
+        "name": "Sword Sai",
+        "level": 16,
+        "price_gold": 970,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_25",
+        "name": "Giant Kunai",
+        "level": 17,
+        "price_gold": 1040,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_18",
+        "name": "Short Manji Sai",
+        "level": 18,
+        "price_gold": 1120,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_20",
+        "name": "Twin Tail Kunai",
+        "level": 19,
+        "price_gold": 1200,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_40",
+        "name": "Silver Sai",
+        "level": 20,
+        "price_gold": 1280,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_100",
+        "name": "Carbon Dagger",
+        "level": 21,
+        "price_gold": 3200,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_85",
+        "name": "Handy Sai",
+        "level": 22,
+        "price_gold": 3390,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_52",
+        "name": "Silver-edged Kunai",
+        "level": 23,
+        "price_gold": 3590,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_485",
+        "name": "Skillful Ninjato",
+        "level": 24,
+        "price_gold": 3800,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_56",
+        "name": "Hole Sword",
+        "level": 25,
+        "price_gold": 4030,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_430",
+        "name": "Light Ninjato",
+        "level": 26,
+        "price_gold": 4270,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_84",
+        "name": "Black Wing Sai",
+        "level": 27,
+        "price_gold": 4540,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_103",
+        "name": "Bronze Kunai",
+        "level": 28,
+        "price_gold": 4820,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_236",
+        "name": "Iron Shuriken",
+        "level": 30,
+        "price_gold": 5460,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_436",
+        "name": "Copper Bone Claw",
+        "level": 31,
+        "price_gold": 5830,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_86",
+        "name": "Sacrificial Blade",
+        "level": 32,
+        "price_gold": 6240,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_54",
+        "name": "Sharp Blade",
+        "level": 33,
+        "price_gold": 6710,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_272",
+        "name": "Double Blade Purple Sickle",
+        "level": 34,
+        "price_gold": 7220,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_222",
+        "name": "Tri-hook Blade Claw",
+        "level": 35,
+        "price_gold": 7810,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_227",
+        "name": "Golden Horn Claw",
+        "level": 36,
+        "price_gold": 8470,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_88",
+        "name": "Superior Jutte",
+        "level": 40,
+        "price_gold": 12180,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_89",
+        "name": "Platinum Jutte",
+        "level": 37,
+        "price_gold": 9220,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_53",
+        "name": "Nomad Blade",
+        "level": 40,
+        "price_gold": 12180,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_06",
+        "name": "Battle Umbrella",
+        "level": 10,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_07",
+        "name": "Ocean Sword",
+        "level": 15,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_37",
+        "name": "Quad Edge Claw",
+        "level": 17,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_05",
+        "name": "Windmill Shuriken",
+        "level": 19,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_49",
+        "name": "Katana",
+        "level": 22,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_45",
+        "name": "Bloody Ritual Kunai",
+        "level": 25,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_46",
+        "name": "Wolf Claw Dagger",
+        "level": 28,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_60",
+        "name": "Blood Charm Tessen",
+        "level": 36,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_62",
+        "name": "Blazing Shuriken",
+        "level": 38,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_61",
+        "name": "Ice Wolf Sword",
+        "level": 40,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_79",
+        "name": "Dark Plate Blade",
+        "level": 28,
+        "price_gold": 7240,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_44",
+        "name": "Wavy Blade",
+        "level": 20,
+        "price_gold": 1280,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_231",
+        "name": "Blue Steel Shuriken",
+        "level": 41,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_245",
+        "name": "Chrome Chain Sickle",
+        "level": 42,
+        "price_gold": 17850,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_212",
+        "name": "Stone Dual Head Kunai",
+        "level": 42,
+        "price_gold": 17850,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_71",
+        "name": "Shark Head Sword",
+        "level": 42,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_154",
+        "name": "Dull Blade Katana",
+        "level": 40,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_158",
+        "name": "Stone Kunai",
+        "level": 42,
+        "price_gold": 17850,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_57",
+        "name": "Tusk Sword",
+        "level": 42,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_604",
+        "name": "Hatamoto Katana",
+        "level": 43,
+        "price_gold": 19620,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_392",
+        "name": "Sharp Ninjato",
+        "level": 43,
+        "price_gold": 19620,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_168",
+        "name": "Short Wing Sai",
+        "level": 43,
+        "price_gold": 19620,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_505",
+        "name": "Eagle Knife",
+        "level": 43,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_403",
+        "name": "Claw of the Rock",
+        "level": 43,
+        "price_gold": 0,
+        "price_tokens": 800,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_161",
+        "name": "Dart Kunai",
+        "level": 44,
+        "price_gold": 21670,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_429",
+        "name": "Eye Kunai",
+        "level": 44,
+        "price_gold": 21670,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_211",
+        "name": "Hiding Combat Knife",
+        "level": 44,
+        "price_gold": 21670,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_156",
+        "name": "Wind Katana",
+        "level": 44,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_568",
+        "name": "Penetration Shuriken",
+        "level": 44,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_524",
+        "name": "Armor Breaker Kunai",
+        "level": 45,
+        "price_gold": 24010,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_68",
+        "name": "Green Leaf Sickle",
+        "level": 45,
+        "price_gold": 24010,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_518",
+        "name": "Hard Steel Katana",
+        "level": 45,
+        "price_gold": 24010,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_69",
+        "name": "Nen-ryu Tessen",
+        "level": 45,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_259",
+        "name": "Dark Iron Battle Umbrella",
+        "level": 45,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_173",
+        "name": "Blue Pearl Kunai",
+        "level": 46,
+        "price_gold": 26720,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_174",
+        "name": "Izanami",
+        "level": 20,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_398",
+        "name": "Blunt Short Sickle",
+        "level": 46,
+        "price_gold": 26720,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_225",
+        "name": "Pata Claw",
+        "level": 46,
+        "price_gold": 26720,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_82",
+        "name": "Dark Ruby Edge",
+        "level": 46,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_234",
+        "name": "Eight Blade Shuriken",
+        "level": 46,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_405",
+        "name": "Evil Snake Knife",
+        "level": 47,
+        "price_gold": 29850,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_406",
+        "name": "Phoenix Gunbai",
+        "level": 60,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_160",
+        "name": "Knot Dagger Kunai",
+        "level": 47,
+        "price_gold": 29850,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_530",
+        "name": "Steel Tri-blade Claw",
+        "level": 47,
+        "price_gold": 29850,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_603",
+        "name": "Ice Breaker Katana",
+        "level": 47,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_395",
+        "name": "Five Rhombus Shuriken",
+        "level": 48,
+        "price_gold": 33460,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_207",
+        "name": "Red Steel Knife",
+        "level": 48,
+        "price_gold": 33460,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_107",
+        "name": "Heavy Armor Blade",
+        "level": 48,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_157",
+        "name": "Dark Soul Katana",
+        "level": 48,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_217",
+        "name": "Cone Dual Head Kunai",
+        "level": 49,
+        "price_gold": 37650,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_404",
+        "name": "Red Cone Kunai",
+        "level": 49,
+        "price_gold": 37650,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_87",
+        "name": "Rusty Scissor Kunai",
+        "level": 49,
+        "price_gold": 37650,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    },
+    {
+        "item_id": "wpn_543",
+        "name": "Ancient Sickle Hook Knife",
+        "level": 49,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "category": "weapon",
+        "premium": 1
+    },
+    {
+        "item_id": "wpn_479",
+        "name": "Advance Steel Kodachi",
+        "level": 50,
+        "price_gold": 42490,
+        "price_tokens": 0,
+        "category": "weapon",
+        "premium": 0
+    }
+]

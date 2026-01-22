@@ -1,0 +1,2981 @@
+[
+    {
+        "skill_id": "skill_01",
+        "name": "Lightning Edge",
+        "level": 1,
+        "element": 3,
+        "price_gold": 100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_05",
+        "name": "Lightning Storm",
+        "level": 5,
+        "element": 3,
+        "price_gold": 510,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_06",
+        "name": "Dual Twister",
+        "level": 3,
+        "element": 1,
+        "price_gold": 300,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_07",
+        "name": "Earth Fist",
+        "level": 3,
+        "element": 4,
+        "price_gold": 300,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_09",
+        "name": "Water Burst",
+        "level": 1,
+        "element": 5,
+        "price_gold": 100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_10",
+        "name": "Fire Ball",
+        "level": 1,
+        "element": 2,
+        "price_gold": 100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_11",
+        "name": "Fiery Flame",
+        "level": 4,
+        "element": 2,
+        "price_gold": 400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_12",
+        "name": "Earth Smash",
+        "level": 1,
+        "element": 4,
+        "price_gold": 100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_13",
+        "name": "Twister",
+        "level": 1,
+        "element": 1,
+        "price_gold": 100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_14",
+        "name": "Lightning Strike",
+        "level": 3,
+        "element": 3,
+        "price_gold": 300,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_15",
+        "name": "Lightning Scatter",
+        "level": 6,
+        "element": 3,
+        "price_gold": 610,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_16",
+        "name": "Wind Cannon",
+        "level": 2,
+        "element": 1,
+        "price_gold": 200,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_17",
+        "name": "Whirlwind Spin",
+        "level": 4,
+        "element": 1,
+        "price_gold": 400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_18",
+        "name": "Fiery Bird Missile",
+        "level": 6,
+        "element": 2,
+        "price_gold": 610,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_19",
+        "name": "Fire Vortex",
+        "level": 5,
+        "element": 2,
+        "price_gold": 510,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_20",
+        "name": "Fiery Spike Wheel",
+        "level": 2,
+        "element": 2,
+        "price_gold": 200,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_21",
+        "name": "Fiery Bird Strike",
+        "level": 7,
+        "element": 2,
+        "price_gold": 640,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_22",
+        "name": "Water Ball",
+        "level": 3,
+        "element": 5,
+        "price_gold": 300,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_23",
+        "name": "Water Dragon Vortex",
+        "level": 5,
+        "element": 5,
+        "price_gold": 510,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_24",
+        "name": "Refresh",
+        "level": 2,
+        "element": 5,
+        "price_gold": 200,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_25",
+        "name": "Water Shark Missile",
+        "level": 6,
+        "element": 5,
+        "price_gold": 610,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_26",
+        "name": "Lightning Impulse",
+        "level": 4,
+        "element": 3,
+        "price_gold": 400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_27",
+        "name": "Lightning Golem",
+        "level": 7,
+        "element": 3,
+        "price_gold": 640,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_28",
+        "name": "Fire Explosion",
+        "level": 3,
+        "element": 2,
+        "price_gold": 300,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_29",
+        "name": "Wind Vortex",
+        "level": 5,
+        "element": 1,
+        "price_gold": 510,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_30",
+        "name": "Wind Assault",
+        "level": 6,
+        "element": 1,
+        "price_gold": 610,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_31",
+        "name": "Earth Wall",
+        "level": 4,
+        "element": 4,
+        "price_gold": 400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_32",
+        "name": "Mud Golem",
+        "level": 5,
+        "element": 4,
+        "price_gold": 510,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_33",
+        "name": "Water Prison",
+        "level": 4,
+        "element": 5,
+        "price_gold": 400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_34",
+        "name": "Earth Strangle",
+        "level": 2,
+        "element": 4,
+        "price_gold": 200,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_35",
+        "name": "Kinjutsu: Lightning Charge",
+        "level": 10,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_36",
+        "name": "Kinjutsu: Fire Power",
+        "level": 10,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_38",
+        "name": "Lightning Spark",
+        "level": 2,
+        "element": 3,
+        "price_gold": 200,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_39",
+        "name": "Kinjutsu: Evasion",
+        "level": 10,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_40",
+        "name": "Water Jet Cannon",
+        "level": 7,
+        "element": 5,
+        "price_gold": 640,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_44",
+        "name": "Earth Spike",
+        "level": 6,
+        "element": 4,
+        "price_gold": 610,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_45",
+        "name": "Wind Gust",
+        "level": 7,
+        "element": 1,
+        "price_gold": 640,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_46",
+        "name": "Wind Rush",
+        "level": 8,
+        "element": 1,
+        "price_gold": 660,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_47",
+        "name": "Explosive Giant Kunai",
+        "level": 8,
+        "element": 2,
+        "price_gold": 660,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_48",
+        "name": "Earth Erosion",
+        "level": 7,
+        "element": 4,
+        "price_gold": 640,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_49",
+        "name": "Dual Lightning Strike",
+        "level": 8,
+        "element": 3,
+        "price_gold": 660,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_50",
+        "name": "Earth Blast",
+        "level": 8,
+        "element": 4,
+        "price_gold": 660,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_51",
+        "name": "Water Impale",
+        "level": 8,
+        "element": 5,
+        "price_gold": 660,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_52",
+        "name": "Dual Wind Assault",
+        "level": 9,
+        "element": 1,
+        "price_gold": 750,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_53",
+        "name": "Pillar of Flame",
+        "level": 9,
+        "element": 2,
+        "price_gold": 750,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_54",
+        "name": "Lightning Arrow Strike",
+        "level": 9,
+        "element": 3,
+        "price_gold": 750,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_55",
+        "name": "Earth Boulder",
+        "level": 9,
+        "element": 4,
+        "price_gold": 750,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_56",
+        "name": "Twin Shark Missile",
+        "level": 9,
+        "element": 5,
+        "price_gold": 750,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_58",
+        "name": "Refresh (Rank 2)",
+        "level": 5,
+        "element": 5,
+        "price_gold": 510,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_59",
+        "name": "Kinjutsu: Golem Protection",
+        "level": 10,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_60",
+        "name": "Kinjutsu: Water Renewal",
+        "level": 10,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_63",
+        "name": "Earthen Fist",
+        "level": 13,
+        "element": 4,
+        "price_gold": 1100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_64",
+        "name": "Water Shark Burst",
+        "level": 13,
+        "element": 5,
+        "price_gold": 1100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_65",
+        "name": "Double Fire Arrows",
+        "level": 13,
+        "element": 2,
+        "price_gold": 1100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_66",
+        "name": "Lightning Shock",
+        "level": 13,
+        "element": 3,
+        "price_gold": 1100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_67",
+        "name": "Dagger of Wind",
+        "level": 13,
+        "element": 1,
+        "price_gold": 1100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_69",
+        "name": "Twin Tornado",
+        "level": 11,
+        "element": 1,
+        "price_gold": 920,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_70",
+        "name": "Double Fireball",
+        "level": 11,
+        "element": 2,
+        "price_gold": 920,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_71",
+        "name": "Empowered Lightning Edge",
+        "level": 11,
+        "element": 3,
+        "price_gold": 920,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_72",
+        "name": "Double Earth Smash",
+        "level": 11,
+        "element": 4,
+        "price_gold": 920,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_73",
+        "name": "Double Water Burst",
+        "level": 11,
+        "element": 5,
+        "price_gold": 920,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_74",
+        "name": "Wind Storm",
+        "level": 15,
+        "element": 1,
+        "price_gold": 1290,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_75",
+        "name": "Fire Whirl",
+        "level": 15,
+        "element": 2,
+        "price_gold": 1290,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_76",
+        "name": "Lightning Rays",
+        "level": 15,
+        "element": 3,
+        "price_gold": 1290,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_77",
+        "name": "Earth Rock Boulder",
+        "level": 15,
+        "element": 4,
+        "price_gold": 1290,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_78",
+        "name": "Water Spear",
+        "level": 15,
+        "element": 5,
+        "price_gold": 1290,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_79",
+        "name": "Multi Fireball",
+        "level": 17,
+        "element": 2,
+        "price_gold": 1490,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_80",
+        "name": "Earth Spines",
+        "level": 17,
+        "element": 4,
+        "price_gold": 1490,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_81",
+        "name": "Water Sphere",
+        "level": 17,
+        "element": 5,
+        "price_gold": 1490,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_82",
+        "name": "Wind Cutter",
+        "level": 17,
+        "element": 1,
+        "price_gold": 1490,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_83",
+        "name": "Lightning  Spear",
+        "level": 17,
+        "element": 3,
+        "price_gold": 1490,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_84",
+        "name": "Refresh (Rank 3)",
+        "level": 15,
+        "element": 5,
+        "price_gold": 1290,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_85",
+        "name": "Kinjutsu: Blade of Wind",
+        "level": 20,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_86",
+        "name": "Kinjutsu: Hell Fire",
+        "level": 20,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_87",
+        "name": "Kinjutsu: Lightning Flash",
+        "level": 20,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_88",
+        "name": "Kinjutsu: Earth Absorption",
+        "level": 20,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_89",
+        "name": "Kinjutsu: Water Bundle",
+        "level": 20,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_92",
+        "name": "Wind Piercing Strike",
+        "level": 21,
+        "element": 1,
+        "price_gold": 4570,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_93",
+        "name": "Raising Fire Fist",
+        "level": 21,
+        "element": 2,
+        "price_gold": 4570,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_94",
+        "name": "Scatter Storm",
+        "level": 21,
+        "element": 3,
+        "price_gold": 4570,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_95",
+        "name": "Earth Fist Combo",
+        "level": 21,
+        "element": 4,
+        "price_gold": 4570,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_96",
+        "name": "Dual Water Edge",
+        "level": 21,
+        "element": 5,
+        "price_gold": 4570,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_97",
+        "name": "Wind Edge Chop",
+        "level": 23,
+        "element": 1,
+        "price_gold": 5130,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_98",
+        "name": "Piercing Fire Dance",
+        "level": 23,
+        "element": 2,
+        "price_gold": 5130,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_99",
+        "name": "Earthen Strike Fist",
+        "level": 23,
+        "element": 4,
+        "price_gold": 5130,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_100",
+        "name": "Dual Lightning Spear",
+        "level": 23,
+        "element": 3,
+        "price_gold": 5130,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_101",
+        "name": "Dual Water Sphere",
+        "level": 23,
+        "element": 5,
+        "price_gold": 5130,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_102",
+        "name": "Dual Wind Cutter",
+        "level": 29,
+        "element": 1,
+        "price_gold": 7320,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_103",
+        "name": "Explosive Kunai Formation",
+        "level": 29,
+        "element": 2,
+        "price_gold": 7320,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_104",
+        "name": "Lightning Ball Burst",
+        "level": 29,
+        "element": 3,
+        "price_gold": 7320,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_105",
+        "name": "Earth Arm",
+        "level": 29,
+        "element": 4,
+        "price_gold": 7320,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_106",
+        "name": "Water Pressure Cannon",
+        "level": 29,
+        "element": 5,
+        "price_gold": 7320,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_110",
+        "name": "Refresh (Rank 4)",
+        "level": 21,
+        "element": 5,
+        "price_gold": 4570,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_111",
+        "name": "Refresh (Rank 5)",
+        "level": 29,
+        "element": 5,
+        "price_gold": 7320,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_112",
+        "name": "Moon Cleave",
+        "level": 36,
+        "element": 1,
+        "price_gold": 12100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_113",
+        "name": "Fire Wave",
+        "level": 36,
+        "element": 2,
+        "price_gold": 12100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_114",
+        "name": "Dual Lightning Shock",
+        "level": 36,
+        "element": 3,
+        "price_gold": 12100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_115",
+        "name": "Earth Palm",
+        "level": 36,
+        "element": 4,
+        "price_gold": 12100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_116",
+        "name": "Water Bombing",
+        "level": 36,
+        "element": 5,
+        "price_gold": 12100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_117",
+        "name": "Starfire Explosion",
+        "level": 40,
+        "element": 2,
+        "price_gold": 17400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_118",
+        "name": "Wind Blade Extension",
+        "level": 40,
+        "element": 1,
+        "price_gold": 17400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_119",
+        "name": "Lightning Flash Cry",
+        "level": 40,
+        "element": 3,
+        "price_gold": 17400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_120",
+        "name": "Earth Arm Combo",
+        "level": 34,
+        "element": 4,
+        "price_gold": 10320,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_121",
+        "name": "Water Shark Swallow",
+        "level": 40,
+        "element": 5,
+        "price_gold": 17400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_123",
+        "name": "Wind Piercing Tornado",
+        "level": 34,
+        "element": 1,
+        "price_gold": 10320,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_125",
+        "name": "Dual Lightning Beam",
+        "level": 54,
+        "element": 3,
+        "price_gold": 95100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_126",
+        "name": "Infinity Wind Chop",
+        "level": 54,
+        "element": 1,
+        "price_gold": 95100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_127",
+        "name": "Starfire Formation",
+        "level": 54,
+        "element": 2,
+        "price_gold": 95100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_128",
+        "name": "Mud Golem Strike Fist",
+        "level": 54,
+        "element": 4,
+        "price_gold": 95100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_129",
+        "name": "Shark Rain",
+        "level": 54,
+        "element": 5,
+        "price_gold": 95100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_130",
+        "name": "Raising Fire Combo",
+        "level": 34,
+        "element": 2,
+        "price_gold": 10320,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_132",
+        "name": "Mud Golem Fist",
+        "level": 40,
+        "element": 4,
+        "price_gold": 17400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_133",
+        "name": "Four Shark Burst",
+        "level": 34,
+        "element": 5,
+        "price_gold": 10320,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_135",
+        "name": "Lightning Beam",
+        "level": 34,
+        "element": 3,
+        "price_gold": 10320,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_140",
+        "name": "Flash Wind Chop",
+        "level": 26,
+        "element": 1,
+        "price_gold": 6100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_141",
+        "name": "Fire Fist Explosion",
+        "level": 26,
+        "element": 2,
+        "price_gold": 6100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_142",
+        "name": "Lightning Hammer",
+        "level": 26,
+        "element": 3,
+        "price_gold": 6100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_143",
+        "name": "Rock Dumplings",
+        "level": 26,
+        "element": 4,
+        "price_gold": 6100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_144",
+        "name": "Water Swallow",
+        "level": 26,
+        "element": 5,
+        "price_gold": 6100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_146",
+        "name": "Wind Blade Crossings",
+        "level": 31,
+        "element": 1,
+        "price_gold": 8330,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_147",
+        "name": "Raising Fire Explosion",
+        "level": 31,
+        "element": 2,
+        "price_gold": 8330,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_148",
+        "name": "Dual Lightning Impulse",
+        "level": 31,
+        "element": 3,
+        "price_gold": 8330,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_149",
+        "name": "Hexagonal Rock Hill",
+        "level": 31,
+        "element": 4,
+        "price_gold": 8330,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_150",
+        "name": "Water Convergence",
+        "level": 31,
+        "element": 5,
+        "price_gold": 8330,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_151",
+        "name": "Kinjutsu: Dance of Fujin",
+        "level": 40,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_152",
+        "name": "Kinjutsu: Rage of Yama",
+        "level": 40,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_153",
+        "name": "Kinjutsu: Armor of Narukami",
+        "level": 40,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_154",
+        "name": "Kinjutsu: Embrace of Golem",
+        "level": 40,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_155",
+        "name": "Kinjutsu: Shield of Suiten",
+        "level": 40,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 500,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_161",
+        "name": "Kinjutsu: Wind Peace",
+        "level": 30,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 400,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_162",
+        "name": "Kinjutsu: Fire Energy Excitation",
+        "level": 30,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 400,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_163",
+        "name": "Kinjutsu: Flash Lightning Bundle",
+        "level": 30,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 400,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_164",
+        "name": "Kinjutsu: Hidden Among Rocks",
+        "level": 30,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 400,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_165",
+        "name": "Kinjutsu: Prison Colliding Wave",
+        "level": 30,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 400,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_196",
+        "name": "Refresh (Rank 6)",
+        "level": 34,
+        "element": 5,
+        "price_gold": 10360,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_197",
+        "name": "Refresh (Rank 7)",
+        "level": 40,
+        "element": 5,
+        "price_gold": 17400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_158",
+        "name": "Lightning Energy Burst",
+        "level": 42,
+        "element": 3,
+        "price_gold": 25500,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_205",
+        "name": "Bursted Lightning Slash",
+        "level": 44,
+        "element": 3,
+        "price_gold": 30900,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_173",
+        "name": "Great Lightning Ball",
+        "level": 48,
+        "element": 3,
+        "price_gold": 47800,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_302",
+        "name": "Kinjutsu: Ultimate Lightning Boost",
+        "level": 50,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 600,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_168",
+        "name": "Lightning Nuclear Burst",
+        "level": 57,
+        "element": 3,
+        "price_gold": 129350,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_180",
+        "name": "Lightning Scatter Shot",
+        "level": 60,
+        "element": 3,
+        "price_gold": 177400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_304",
+        "name": "Kinjutsu: Narukami Great Lightning Bullet",
+        "level": 60,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 750,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_157",
+        "name": "Dual Fire Wave",
+        "level": 42,
+        "element": 2,
+        "price_gold": 25500,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_204",
+        "name": "Martial Fire Combo",
+        "level": 44,
+        "element": 2,
+        "price_gold": 30900,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_172",
+        "name": "Fire Bird Rider",
+        "level": 48,
+        "element": 2,
+        "price_gold": 47800,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_234",
+        "name": "Kinjutsu: Fire Phoenix Breath",
+        "level": 50,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 600,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_167",
+        "name": "Falling Fire Meteorite",
+        "level": 57,
+        "element": 2,
+        "price_gold": 129350,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_179",
+        "name": "Fiery Magatama Explosion",
+        "level": 60,
+        "element": 2,
+        "price_gold": 177400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_236",
+        "name": "Kinjutsu: Yama Great Fire Cannon",
+        "level": 60,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 750,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_156",
+        "name": "Double Moon Cleave",
+        "level": 42,
+        "element": 1,
+        "price_gold": 25500,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_203",
+        "name": "Straight Wind Slash",
+        "level": 44,
+        "element": 1,
+        "price_gold": 30950,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_171",
+        "name": "Wind Blade Combat",
+        "level": 48,
+        "element": 1,
+        "price_gold": 47800,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_285",
+        "name": "Kinjutsu: Infinite Whirlwind Breakthrough",
+        "level": 50,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 600,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_166",
+        "name": "Wind Cross Cut",
+        "level": 57,
+        "element": 1,
+        "price_gold": 129350,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_178",
+        "name": "Tornado Step",
+        "level": 60,
+        "element": 1,
+        "price_gold": 177400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_287",
+        "name": "Kinjutsu: Fujin Vacuum Storm",
+        "level": 60,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 750,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_159",
+        "name": "Dual Rock Dumplings",
+        "level": 42,
+        "element": 4,
+        "price_gold": 25500,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_206",
+        "name": "Earth Spear Assasination",
+        "level": 44,
+        "element": 4,
+        "price_gold": 30950,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_174",
+        "name": "Crushed Stone Strike",
+        "level": 48,
+        "element": 4,
+        "price_gold": 47800,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_251",
+        "name": "Kinjutsu: Golem Rock Gauntlets",
+        "level": 50,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 600,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_169",
+        "name": "Rock Land Blast",
+        "level": 57,
+        "element": 4,
+        "price_gold": 129350,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_181",
+        "name": "Nail Earth Coffin",
+        "level": 60,
+        "element": 4,
+        "price_gold": 177400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_253",
+        "name": "Kinjutsu: Golem Great Smash",
+        "level": 60,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 750,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_160",
+        "name": "Water Pressure Strike",
+        "level": 42,
+        "element": 5,
+        "price_gold": 25500,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_207",
+        "name": "Water Pressure Multi strike",
+        "level": 44,
+        "element": 5,
+        "price_gold": 30950,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_175",
+        "name": "Pressure Wave Impale",
+        "level": 48,
+        "element": 5,
+        "price_gold": 47800,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_268",
+        "name": "Kinjutsu: Shark Encampment Shield",
+        "level": 50,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 600,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_170",
+        "name": "Great Water Ball Strike",
+        "level": 57,
+        "element": 5,
+        "price_gold": 129350,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_182",
+        "name": "Irresistible Water Blast",
+        "level": 60,
+        "element": 5,
+        "price_gold": 177400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_270",
+        "name": "Kinjutsu: Strong Arm Of Suiten",
+        "level": 60,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 750,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_198",
+        "name": "Refresh (Rank 8)",
+        "level": 48,
+        "element": 5,
+        "price_gold": 47800,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_199",
+        "name": "Refresh (Rank 9)",
+        "level": 54,
+        "element": 5,
+        "price_gold": 95100,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_200",
+        "name": "Refresh (Rank 10)",
+        "level": 60,
+        "element": 5,
+        "price_gold": 177400,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_215",
+        "name": "Fuji-ryu Sonic Edge",
+        "level": 62,
+        "element": 1,
+        "price_gold": 195570,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_319",
+        "name": "Speedy Wind Kick",
+        "level": 65,
+        "element": 1,
+        "price_gold": 225720,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_314",
+        "name": "Surprise Wind Strike",
+        "level": 70,
+        "element": 1,
+        "price_gold": 304780,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_216",
+        "name": "Extreme Starfire",
+        "level": 62,
+        "element": 2,
+        "price_gold": 195570,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_320",
+        "name": "Flame Ghost",
+        "level": 65,
+        "element": 2,
+        "price_gold": 225720,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_315",
+        "name": "Fiery Air Explosion",
+        "level": 70,
+        "element": 2,
+        "price_gold": 304780,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_316",
+        "name": "Severing Flash Chop",
+        "level": 62,
+        "element": 3,
+        "price_gold": 195570,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_217",
+        "name": "Lightning Roar of Sky",
+        "level": 65,
+        "element": 3,
+        "price_gold": 225720,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_321",
+        "name": "Ultimated Burst Strike",
+        "level": 70,
+        "element": 3,
+        "price_gold": 304780,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_218",
+        "name": "Rolling Mud Strike",
+        "level": 62,
+        "element": 4,
+        "price_gold": 195570,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_322",
+        "name": "Rock Hammer Bombardment",
+        "level": 65,
+        "element": 4,
+        "price_gold": 225720,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_327",
+        "name": "Golem Rock Hill Combo",
+        "level": 70,
+        "element": 4,
+        "price_gold": 304780,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_323",
+        "name": "Water Ghost Impale",
+        "level": 62,
+        "element": 5,
+        "price_gold": 195570,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_318",
+        "name": "Great Water Scatter Burst",
+        "level": 65,
+        "element": 5,
+        "price_gold": 225720,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_219",
+        "name": "Hands of Water Cannon",
+        "level": 70,
+        "element": 5,
+        "price_gold": 304780,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_371",
+        "name": "Refresh (Rank 11)",
+        "level": 70,
+        "element": 5,
+        "price_gold": 304780,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_372",
+        "name": "Refresh (Rank 12)",
+        "level": 80,
+        "element": 5,
+        "price_gold": 536020,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_220",
+        "name": "Kinjutsu: Fire Power II",
+        "level": 20,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_221",
+        "name": "Kinjutsu: Fire Power III",
+        "level": 30,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 150,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_222",
+        "name": "Kinjutsu: Fire Power IV",
+        "level": 40,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_223",
+        "name": "Kinjutsu: Fire Power V",
+        "level": 50,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_224",
+        "name": "Kinjutsu: Fire Power VI",
+        "level": 60,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_225",
+        "name": "Kinjutsu: Hell Fire II",
+        "level": 30,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 150,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_226",
+        "name": "Kinjutsu: Hell Fire III",
+        "level": 40,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_227",
+        "name": "Kinjutsu: Hell Fire IV",
+        "level": 50,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_228",
+        "name": "Kinjutsu: Hell Fire V",
+        "level": 60,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_229",
+        "name": "Kinjutsu: Fire Energy Excitation II",
+        "level": 40,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_230",
+        "name": "Kinjutsu: Fire Energy Excitation III",
+        "level": 50,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_231",
+        "name": "Kinjutsu: Fire Energy Excitation IV",
+        "level": 60,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_232",
+        "name": "Kinjutsu: Rage of Yama II",
+        "level": 50,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_233",
+        "name": "Kinjutsu: Rage of Yama III",
+        "level": 60,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_235",
+        "name": "Kinjutsu: Kinjutsu: Fire Phoenix Breath II",
+        "level": 60,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_237",
+        "name": "Kinjutsu: Golem Protection II",
+        "level": 20,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_238",
+        "name": "Kinjutsu: Golem Protection III",
+        "level": 30,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 150,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_239",
+        "name": "Kinjutsu: Golem Protection IV",
+        "level": 40,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_240",
+        "name": "Kinjutsu: Golem Protection V",
+        "level": 50,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_241",
+        "name": "Kinjutsu: Golem Protection VI",
+        "level": 60,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_242",
+        "name": "Kinjutsu: Earth Absorption II",
+        "level": 30,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 150,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_243",
+        "name": "Kinjutsu: Earth Absorption III",
+        "level": 40,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 150,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_244",
+        "name": "Kinjutsu: Earth Absorption IV",
+        "level": 50,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_245",
+        "name": "Kinjutsu: Earth Absorption V",
+        "level": 60,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_246",
+        "name": "Kinjutsu: Hidden Among Rocks II",
+        "level": 40,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_247",
+        "name": "Kinjutsu: Hidden Among Rocks III",
+        "level": 50,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_248",
+        "name": "Kinjutsu: Hidden Among Rocks IV",
+        "level": 60,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_249",
+        "name": "Kinjutsu: Embrace of Golem II",
+        "level": 50,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_250",
+        "name": "Kinjutsu: Embrace of Golem III",
+        "level": 60,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_252",
+        "name": "Kinjutsu: Golem Rock Gauntlets II",
+        "level": 60,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_254",
+        "name": "Kinjutsu: Water Renewal II",
+        "level": 20,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_255",
+        "name": "Kinjutsu: Water Renewal III",
+        "level": 30,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 150,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_256",
+        "name": "Kinjutsu: Water Renewal IV",
+        "level": 40,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_257",
+        "name": "Kinjutsu: Water Renewal V",
+        "level": 50,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_258",
+        "name": "Kinjutsu: Water Renewal VI",
+        "level": 60,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_259",
+        "name": "Kinjutsu: Water Bundle II",
+        "level": 30,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 150,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_260",
+        "name": "Kinjutsu: Water Bundle III",
+        "level": 40,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_261",
+        "name": "Kinjutsu: Water Bundle IV",
+        "level": 50,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_262",
+        "name": "Kinjutsu: Water Bundle V",
+        "level": 60,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_264",
+        "name": "Kinjutsu: Prison Colliding Wave II",
+        "level": 40,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_263",
+        "name": "Kinjutsu: Prison Colliding Wave III",
+        "level": 50,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_265",
+        "name": "Kinjutsu: Prison Colliding Wave IV",
+        "level": 60,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_266",
+        "name": "Kinjutsu: Shield of Suiten II",
+        "level": 50,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_267",
+        "name": "Kinjutsu: Shield of Suiten III",
+        "level": 60,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_269",
+        "name": "Kinjutsu: Shark Encampment Shield II",
+        "level": 60,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_271",
+        "name": "Kinjutsu: Evasion II",
+        "level": 20,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_272",
+        "name": "Kinjutsu: Evasion III",
+        "level": 30,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 150,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_273",
+        "name": "Kinjutsu: Evasion IV",
+        "level": 40,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_274",
+        "name": "Kinjutsu: Evasion V",
+        "level": 50,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_275",
+        "name": "Kinjutsu: Evasion VI",
+        "level": 60,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_276",
+        "name": "Kinjutsu: Blade of Wind II",
+        "level": 30,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 150,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_277",
+        "name": "Kinjutsu: Blade of Wind III",
+        "level": 40,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_278",
+        "name": "Kinjutsu: Blade of Wind IV",
+        "level": 50,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_279",
+        "name": "Kinjutsu: Blade of Wind V",
+        "level": 60,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_280",
+        "name": "Kinjutsu: Wind Peace II",
+        "level": 40,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_281",
+        "name": "Kinjutsu: Wind Peace III",
+        "level": 50,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_282",
+        "name": "Kinjutsu: Wind Peace IV",
+        "level": 60,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_283",
+        "name": "Kinjutsu: Dance of Fujin II",
+        "level": 50,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_284",
+        "name": "Kinjutsu: Dance of Fujin III",
+        "level": 60,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_286",
+        "name": "Kinjutsu: Infinite Whirlwind Breakthrough II",
+        "level": 60,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_288",
+        "name": "Kinjutsu: Lightning Charge II",
+        "level": 20,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 100,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_289",
+        "name": "Kinjutsu: Lightning Charge III",
+        "level": 30,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 150,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_290",
+        "name": "Kinjutsu: Lightning Charge IV",
+        "level": 40,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_291",
+        "name": "Kinjutsu: Lightning Charge V",
+        "level": 50,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_292",
+        "name": "Kinjutsu: Lightning Charge VI",
+        "level": 60,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_293",
+        "name": "Kinjutsu: Lightning Flash II",
+        "level": 30,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 150,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_294",
+        "name": "Kinjutsu: Lightning Flash III",
+        "level": 40,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_295",
+        "name": "Kinjutsu: Lightning Flash IV",
+        "level": 50,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_296",
+        "name": "Kinjutsu: Lightning Flash V",
+        "level": 60,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_297",
+        "name": "Kinjutsu: Flash Lightning Bundle II",
+        "level": 40,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 200,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_298",
+        "name": "Kinjutsu: Flash Lightning Bundle III",
+        "level": 50,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_299",
+        "name": "Kinjutsu: Flash Lightning Bundle IV",
+        "level": 60,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_300",
+        "name": "Kinjutsu: Armor of Narukami II",
+        "level": 50,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 250,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_301",
+        "name": "Kinjutsu: Armor of Narukami III",
+        "level": 60,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_303",
+        "name": "Kinjutsu: Ultimate Lightning Boost II",
+        "level": 60,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 300,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_324",
+        "name": "Whirlwind Blast Palm",
+        "level": 80,
+        "element": 1,
+        "price_gold": 536020,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_325",
+        "name": "Starfire Strike Kick",
+        "level": 75,
+        "element": 2,
+        "price_gold": 412540,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_326",
+        "name": "Boost Lightning Fang Bomb",
+        "level": 80,
+        "element": 3,
+        "price_gold": 536020,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_317",
+        "name": "Hard Rock Blast Palm",
+        "level": 75,
+        "element": 4,
+        "price_gold": 412540,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_328",
+        "name": "Flash Water Cannon Strike",
+        "level": 75,
+        "element": 5,
+        "price_gold": 412540,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_329",
+        "name": "Cross Wind Blast",
+        "level": 75,
+        "element": 1,
+        "price_gold": 412540,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_330",
+        "name": "Flaming World",
+        "level": 80,
+        "element": 2,
+        "price_gold": 536020,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_331",
+        "name": "Flash Spark Bombardment",
+        "level": 75,
+        "element": 3,
+        "price_gold": 412540,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_332",
+        "name": "Golem Solid Earth Burst",
+        "level": 80,
+        "element": 4,
+        "price_gold": 536020,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_333",
+        "name": "Boosted Water Pressure Burst",
+        "level": 80,
+        "element": 5,
+        "price_gold": 536020,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_625",
+        "name": "Kinjutsu: Wind Shuriken Guard",
+        "level": 70,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 900,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_626",
+        "name": "Kinjutsu: Storm Boomerang",
+        "level": 80,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 1000,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_624",
+        "name": "Tempest Dragon",
+        "level": 85,
+        "element": 1,
+        "price_gold": 1000000,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_623",
+        "name": "Vacuum Bomb",
+        "level": 90,
+        "element": 1,
+        "price_gold": 1200000,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_629",
+        "name": "Kinjutsu: Flame Armor",
+        "level": 70,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 900,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_628",
+        "name": "Kinjutsu: Devouring Flames",
+        "level": 80,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 1000,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_630",
+        "name": "Mega Fire",
+        "level": 85,
+        "element": 2,
+        "price_gold": 1000000,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_627",
+        "name": "Giant Flame Palm",
+        "level": 90,
+        "element": 2,
+        "price_gold": 1200000,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_633",
+        "name": "Kinjutsu: Thunder Explosion",
+        "level": 70,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 900,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_634",
+        "name": "Kinjutsu: Thunder Beast Chasing",
+        "level": 80,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 900,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_632",
+        "name": "Electric Smash",
+        "level": 85,
+        "element": 3,
+        "price_gold": 1000000,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_631",
+        "name": "Lightning Cannon",
+        "level": 90,
+        "element": 3,
+        "price_gold": 1200000,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_637",
+        "name": "Kinjutsu: Slurry Coat",
+        "level": 70,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 900,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_636",
+        "name": "Kinjutsu: Monolith Pressure",
+        "level": 80,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 1000,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_638",
+        "name": "Earth Dragon Spirit",
+        "level": 85,
+        "element": 4,
+        "price_gold": 1000000,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_635",
+        "name": "Obsidian Needles",
+        "level": 90,
+        "element": 4,
+        "price_gold": 1200000,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_641",
+        "name": "Kinjutsu: Aqua Mirror",
+        "level": 70,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 900,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_640",
+        "name": "Kinjutsu: Giant Water Drill",
+        "level": 80,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 1000,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_642",
+        "name": "Hydro Dragon Blast",
+        "level": 85,
+        "element": 5,
+        "price_gold": 1000000,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_639",
+        "name": "Bubble Mines",
+        "level": 90,
+        "element": 5,
+        "price_gold": 1200000,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_420",
+        "name": "Kinjutsu: Five Sense Breakthrough",
+        "level": 5,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_421",
+        "name": "Kinjutsu: Kagutsuchi Kimono",
+        "level": 5,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_422",
+        "name": "Kinjutsu: Inazuma Mangedan",
+        "level": 5,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_423",
+        "name": "Kinjutsu: Heavy Rock Martial Art",
+        "level": 5,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_424",
+        "name": "Kinjutsu: Reverse Moving Water",
+        "level": 5,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_425",
+        "name": "Kinjutsu: Shokaze Futekina",
+        "level": 40,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_426",
+        "name": "Kinjutsu: Benika Ichimonji",
+        "level": 40,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_427",
+        "name": "Kinjutsu: Shadow Lightning Annihilation",
+        "level": 40,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_428",
+        "name": "Kinjutsu: Gan Ute",
+        "level": 40,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_429",
+        "name": "Kinjutsu: Mizu Dojigiri",
+        "level": 40,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_430",
+        "name": "Kinjutsu: Kamaitachi Gekitotsu",
+        "level": 70,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_431",
+        "name": "Kinjutsu: Dragon Fire Majestic Arrow",
+        "level": 70,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_432",
+        "name": "Kinjutsu: Five Finger Lightning Spear",
+        "level": 70,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_433",
+        "name": "Kinjutsu: Heavy Rock Destroyer Technique",
+        "level": 70,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_434",
+        "name": "Kinjutsu: Shin Breath Tower",
+        "level": 70,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_806",
+        "name": "Kinjutsu: Dual Fire Dragon",
+        "level": 40,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_807",
+        "name": "Kinjutsu: Water Bump",
+        "level": 40,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_808",
+        "name": "Kinjutsu: Whirlwind Pearl",
+        "level": 40,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_809",
+        "name": "Kinjutsu: Blast Lightning Thunder Drop",
+        "level": 40,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_810",
+        "name": "Kinjutsu: Jet Rock Punch",
+        "level": 40,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_460",
+        "name": "Summoning: Flaming Smash",
+        "level": 12,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_462",
+        "name": "Summoning: Flaming Dragon Throw",
+        "level": 28,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_463",
+        "name": "Summoning: Badminton Bombing",
+        "level": 80,
+        "element": 2,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_464",
+        "name": "Summoning: Rocky Discus Throw",
+        "level": 12,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_467",
+        "name": "Summoning: Rocky Ball Artillery",
+        "level": 28,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_468",
+        "name": "Summoning: Earth Sand River Jump",
+        "level": 80,
+        "element": 4,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_469",
+        "name": "Summoning: Free Exercise Attack",
+        "level": 12,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_471",
+        "name": "Summoning: Balance Beam Blade of Cyclone",
+        "level": 28,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_473",
+        "name": "Summoning: Wind Vault Kick",
+        "level": 80,
+        "element": 1,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_474",
+        "name": "Summoning: Sailing Strike",
+        "level": 12,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_476",
+        "name": "Summoning: Water Polo Cannon",
+        "level": 28,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_478",
+        "name": "Summoning: Three and a half twists Tsunami",
+        "level": 80,
+        "element": 5,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_480",
+        "name": "Summoning: Lightning Thrusting",
+        "level": 12,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_481",
+        "name": "Summoning: Lightning Ten Thousand Arrows",
+        "level": 28,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    },
+    {
+        "skill_id": "skill_483",
+        "name": "Summoning: Lightning Combo Strike",
+        "level": 80,
+        "element": 3,
+        "price_gold": 0,
+        "price_tokens": 0,
+        "premium": 0
+    }
+]
