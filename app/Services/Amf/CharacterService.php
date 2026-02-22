@@ -357,11 +357,6 @@ class CharacterService
             $colorHex = '#' . $colorHex;
         }
 
-        \Illuminate\Support\Facades\Log::info("RGB DATA DEBUG", [
-            'char_id' => $char->id,
-            'rgb_data' => $colorHex
-        ]);
-
         return (object)[
             'status' => 1,
             'error' => 0,
