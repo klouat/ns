@@ -21,7 +21,7 @@ class MailService
             'deleteAllMails' => $this->deleteAllMails(...$params),
             'acceptFriendRequest' => $this->acceptFriendRequest(...$params),
             // 'acceptInvitation' => $this->acceptInvitation(...$params),
-            default => ['status' => 0, 'error' => "Command $command not implemented"]
+            default => (object)['status' => 0, 'error' => "Command $command not implemented"]
         };
     }
 
@@ -33,7 +33,7 @@ class MailService
 
         $data = [];
         foreach ($mails as $mail) {
-            $data[] = [
+            $data[] = (object)[
                 'mail_id' => $mail->id,
                 'mail_title' => $mail->title,
                 'mail_sender' => $mail->sender_name ?? 'System',
@@ -46,7 +46,7 @@ class MailService
             ];
         }
 
-        return [
+        return (object)[
             'status' => 1,
             'mails' => $data
         ];
@@ -58,7 +58,7 @@ class MailService
             ->where('character_id', $charId)
             ->update(['is_viewed' => true]);
 
-        return ['status' => 1];
+        return (object)['status' => 1];
     }
 
     private function deleteMail($charId, $sessionKey, $mailId)
@@ -67,7 +67,7 @@ class MailService
             ->where('character_id', $charId)
             ->delete();
 
-        return ['status' => 1, 'result' => 'Mail has been deleted!'];
+        return (object)['status' => 1, 'result' => 'Mail has been deleted!'];
     }
 
     private function claimReward($charId, $sessionKey, $mailId)
@@ -79,23 +79,23 @@ class MailService
                     ->lockForUpdate()
                     ->first();
 
-                if (!$mail) return ['status' => 0, 'error' => 'Mail not found'];
-                if ($mail->is_claimed) return ['status' => 2, 'result' => 'Reward already claimed'];
-                if (empty($mail->rewards)) return ['status' => 2, 'result' => 'No rewards in this mail'];
+                if (!$mail) return (object)['status' => 0, 'error' => 'Mail not found'];
+                if ($mail->is_claimed) return (object)['status' => 2, 'result' => 'Reward already claimed'];
+                if (empty($mail->rewards)) return (object)['status' => 2, 'result' => 'No rewards in this mail'];
 
                 $mail->is_claimed = true;
                 $mail->save();
 
                 // Logic for adding rewards to character would go here.
                 // For now, return the rewards string as expected by the client.
-                return [
+                return (object)[
                     'status' => 1,
                     'rewards' => $mail->rewards
                 ];
             });
         } catch (\Exception $e) {
             Log::error($e);
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
 
@@ -110,7 +110,7 @@ class MailService
                     ->get();
 
                 if ($mails->isEmpty()) {
-                    return ['status' => 2, 'result' => 'No rewards to claim'];
+                    return (object)['status' => 2, 'result' => 'No rewards to claim'];
                 }
 
                 $allRewards = [];
@@ -122,7 +122,7 @@ class MailService
 
                 $rewardsString = implode(',', $allRewards);
 
-                return [
+                return (object)[
                     'status' => 1,
                     'rewards' => $rewardsString,
                     'result' => 'All rewards claimed!'
@@ -130,14 +130,14 @@ class MailService
             });
         } catch (\Exception $e) {
             Log::error($e);
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
 
     private function deleteAllMails($charId, $sessionKey)
     {
         Mail::where('character_id', $charId)->delete();
-        return ['status' => 1, 'result' => 'All mails deleted!'];
+        return (object)['status' => 1, 'result' => 'All mails deleted!'];
     }
 
     private function acceptFriendRequest($charId, $sessionKey, $mailId)
@@ -149,21 +149,21 @@ class MailService
                     ->where('type', 2) // Friend Request
                     ->first();
 
-                if (!$mail) return ['status' => 2, 'result' => 'Request not found'];
+                if (!$mail) return (object)['status' => 2, 'result' => 'Request not found'];
 
                 // Assuming mail body contains sender character ID or we can extract it
                 // This is a simplified implementation
                 
                 $mail->delete();
 
-                return [
+                return (object)[
                     'status' => 1,
                     'result' => 'Friend request accepted!'
                 ];
             });
         } catch (\Exception $e) {
             Log::error($e);
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
 }

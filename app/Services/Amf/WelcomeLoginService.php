@@ -6,19 +6,20 @@ use App\Models\Character;
 use App\Models\CharacterWelcomeLogin;
 use App\Models\CharacterItem;
 use App\Models\User;
+use App\Models\CharacterSkill;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class WelcomeLoginService
 {
     private $rewardsList = [
-        ['day' => 1, 'r' => 'gold:10000'],
-        ['day' => 2, 'r' => 'token:50'],
-        ['day' => 3, 'r' => 'xp:5000'],
-        ['day' => 4, 'r' => 'token:100'],
-        ['day' => 5, 'r' => 'xp:10000'],
-        ['day' => 6, 'r' => 'token:200'],
-        ['day' => 7, 'r' => 'gold:100000'],
+        ['day' => 1, 'r' => 'gold_250000'],
+        ['day' => 2, 'r' => 'skill_7016'],
+        ['day' => 3, 'r' => 'skill_7014'],
+        ['day' => 4, 'r' => 'skill_7011'],
+        ['day' => 5, 'r' => 'skill_7001'],
+        ['day' => 6, 'r' => 'skill_7009'],
+        ['day' => 7, 'r' => 'skill_7000'],
     ];
 
     public function get($charId, $sessionKey)
@@ -46,15 +47,15 @@ class WelcomeLoginService
                 $claimed = $welcome->claimed_days ?? [];
                 $rewards = [];
                 foreach ($this->rewardsList as $index => $reward) {
-                    $rewards[] = [
-                        'day' => "Day " . ($index + 1),
+                    $rewards[] = (object)[
+                        'day' => (int)($index + 1),
                         'id' => (int)$reward['day'],
                         'r' => (string)$reward['r'],
                         'c' => (int)(in_array($index, $claimed) ? 1 : 0)
                     ];
                 }
 
-                return [
+                return (object)[
                     'status' => 1,
                     'logins' => (int)$welcome->login_count,
                     'rewards' => $rewards,
@@ -63,7 +64,7 @@ class WelcomeLoginService
             });
         } catch (\Exception $e) {
             Log::error("Error in WelcomeLogin.get: " . $e->getMessage());
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
 
@@ -74,15 +75,15 @@ class WelcomeLoginService
                 $char = Character::lockForUpdate()->find($charId);
                 $welcome = CharacterWelcomeLogin::where('character_id', $charId)->lockForUpdate()->first();
 
-                if (!$welcome) return ['status' => 0, 'error' => 'Data not found'];
+                if (!$welcome) return (object)['status' => 0, 'error' => 'Data not found'];
 
                 if ($dayIdx >= $welcome->login_count) {
-                    return ['status' => 2, 'result' => 'Day not reached yet!'];
+                    return (object)['status' => 2, 'result' => 'Day not reached yet!'];
                 }
 
                 $claimed = $welcome->claimed_days ?? [];
                 if (in_array($dayIdx, $claimed)) {
-                    return ['status' => 2, 'result' => 'Already claimed!'];
+                    return (object)['status' => 2, 'result' => 'Already claimed!'];
                 }
 
                 $rewardStr = $this->rewardsList[$dayIdx]['r'];
@@ -92,51 +93,58 @@ class WelcomeLoginService
 
                 $formattedReward = $this->applyReward($char, $rewardStr);
 
-                return [
+                return (object)[
                     'status' => 1,
                     'rewards' => [$formattedReward]
                 ];
             });
         } catch (\Exception $e) {
             Log::error("Error in WelcomeLogin.claim: " . $e->getMessage());
-            return ['status' => 0, 'error' => 'Internal Server Error: ' . $e->getMessage()];
+            return (object)['status' => 0, 'error' => 'Internal Server Error: ' . $e->getMessage()];
         }
     }
 
     private function applyReward($char, $rewardStr)
     {
-        $parts = explode(':', $rewardStr);
-        $type = $parts[0];
-        $qty = isset($parts[1]) ? (int)$parts[1] : 1;
+        $qty = 1;
+        $type = $rewardStr;
 
-        $formatted = "";
+        if (str_contains($rewardStr, ':')) {
+            $parts = explode(':', $rewardStr);
+            $type = $parts[0];
+            $qty = (int)$parts[1];
+        }
 
-        if ($type === 'gold' || $type === 'item_gold') {
-            $char->gold += $qty;
+        $formatted = $type;
+
+        if (str_starts_with($type, 'gold_')) {
+            $amount = (int)substr($type, 5);
+            $char->gold += $amount;
             $char->save();
-            $formatted = "gold_~" . $qty;
-        } elseif ($type === 'tokens' || $type === 'token') {
-            $user = User::find($char->user_id);
-            if ($user) {
-                $user->tokens += $qty;
-                $user->save();
-            }
-            $formatted = "tokens_~" . $qty;
-        } elseif ($type === 'xp') {
-            $char->xp += $qty;
-            $char->save();
-            $formatted = "xp_~" . $qty;
-        } elseif ($type === 'tp') {
-            $char->tp += $qty;
-            $char->save();
-            $formatted = "tp_~" . $qty;
+            $formatted = $type;
+        } elseif (str_starts_with($type, 'skill_')) {
+            $this->addSkill($char->id, $type);
+            $formatted = $type;
         } else {
-            // Assume item
             $this->addItem($char->id, $type, $qty);
             $formatted = $type;
         }
 
         return $formatted;
+    }
+
+    private function addSkill($charId, $skillId)
+    {
+        $exists = CharacterSkill::where('character_id', $charId)
+            ->where('skill_id', $skillId)
+            ->exists();
+
+        if (!$exists) {
+            CharacterSkill::create([
+                'character_id' => $charId,
+                'skill_id' => $skillId
+            ]);
+        }
     }
 
     private function addItem($charId, $itemId, $qty)

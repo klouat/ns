@@ -920,15 +920,38 @@
         ]
       },
       "crew": {
-        "weapons": [],
-        "hairs": [],
-        "sets": [],
-        "backs": [],
+        "weapons": [
+          "wpn_4037",
+          "wpn_4038",
+          "wpn_4039"
+        ],
+        "hairs": [
+          "hair_8001_%s",
+          "hair_8002_%s",
+          "hair_8003_%s",
+          "hair_8004_%s"
+        ],
+        "sets": [
+          "set_8001_%s",
+          "set_8002_%s",
+          "set_8003_%s",
+          "set_8004_%s"
+        ],
+        "backs": [
+          "back_4001"
+        ],
         "accs": [],
         "items": [],
         "essentials": [
           "material_939",
-          "material_941"
+          "material_941",
+          "material_204",
+          "material_819",
+          "material_820",
+          "material_821",
+          "material_822",
+          "material_823",
+          "material_773"
         ],
         "skills": []
       }
@@ -2261,6 +2284,7 @@
     "id": "encyclopedia",
     "data": {
       "background": [
+        "mission_1066",
         "mission_1065",
         "mission_1064",
         "mission_1063",
@@ -2613,11 +2637,6 @@
           {
             "name": "Overwhelm",
             "description": "Inrease user's Dodge and agility.",
-            "category": "defense"
-          },
-          {
-            "name": "Damage Absorb to HP",
-            "description": "For a number of turns, when the user is attacked, there's a percentage amount of damage that will be converted into HP.",
             "category": "defense"
           },
           {
@@ -3046,6 +3065,11 @@
             "name": "Demonic Curse",
             "description": "The target loses a percentage amount of HP each turn for a number of turns.",
             "category": "defense"
+          },
+          {
+            "name": "Cosmic Flames",
+            "description": "Causes the target to lose HP each turn for several turns. If the target already has a negative status, also inflicts Internal Injury for several turns.",
+            "category": "offense"
           }
         ]
       }
@@ -3412,38 +3436,38 @@
     "data": {
       "clan": [
         {
-          "weapon": "wpn_6076",
-          "back": "back_6045",
+          "weapon": "wpn_6082",
+          "back": "back_6046",
           "accessory": null,
-          "set": "set_6176_%s",
+          "set": "set_6180_%s",
           "hair": "hair_01_%s"
         },
         {
-          "weapon": "wpn_6076",
-          "back": "back_6045",
+          "weapon": "wpn_6082",
+          "back": "back_6046",
           "accessory": null,
-          "set": "set_6177_%s",
+          "set": "set_6181_%s",
           "hair": "hair_01_%s"
         },
         {
-          "weapon": "wpn_6076",
-          "back": "back_6045",
+          "weapon": "wpn_6082",
+          "back": "back_6046",
           "accessory": null,
-          "set": "set_6178_%s",
+          "set": "set_6182_%s",
           "hair": "hair_01_%s"
         },
         {
-          "weapon": "wpn_6076",
-          "back": "back_6045",
+          "weapon": "wpn_6082",
+          "back": "back_6046",
           "accessory": null,
-          "set": "set_6179_%s",
+          "set": "set_6183_%s",
           "hair": "hair_01_%s"
         },
         {
           "weapon": null,
-          "back": "back_6045",
+          "back": "back_6046",
           "accessory": null,
-          "set": "set_6179_%s",
+          "set": "set_6183_%s",
           "hair": "hair_01_%s"
         }
       ],
@@ -3451,62 +3475,62 @@
         "all_squad": [
           {
             "weapon": null,
-            "back": "back_7013",
+            "back": "back_7016",
             "accessory": null,
-            "set": "set_7053_%s",
+            "set": "set_7062_%s",
             "hair": "hair_01_%s"
           },
           {
             "weapon": null,
-            "back": "back_7013",
+            "back": "back_7016",
             "accessory": null,
-            "set": "set_7053_%s",
+            "set": "set_7062_%s",
             "hair": "hair_01_%s"
           },
           {
             "weapon": null,
-            "back": "back_7013",
+            "back": "back_7016",
             "accessory": null,
-            "set": "set_7053_%s",
+            "set": "set_7062_%s",
             "hair": "hair_01_%s"
           },
           {
             "weapon": null,
             "back": null,
             "accessory": null,
-            "set": "set_7053_%s",
+            "set": "set_7062_%s",
             "hair": "hair_01_%s"
           }
         ],
         "winner_squad": [
           {
-            "weapon": "wpn_7013",
+            "weapon": "wpn_7016",
             "back": null,
             "accessory": null,
-            "set": "set_7051_%s",
-            "hair": "hair_7003_%s"
+            "set": "set_7060_%s",
+            "hair": "hair_7006_%s"
           },
           {
             "weapon": null,
             "back": null,
             "accessory": null,
-            "set": "set_7052_%s",
+            "set": "set_7061_%s",
             "hair": "hair_01_%s"
           }
         ],
         "global_rank": [
           {
-            "weapon": "wpn_7013",
+            "weapon": "wpn_7016",
             "back": null,
             "accessory": null,
-            "set": "set_7051_%s",
+            "set": "set_7060_%s",
             "hair": "hair_01_%s"
           },
           {
-            "weapon": "wpn_7013",
+            "weapon": "wpn_7016",
             "back": null,
             "accessory": null,
-            "set": "set_7052_%s",
+            "set": "set_7061_%s",
             "hair": "hair_01_%s"
           }
         ]
@@ -5921,108 +5945,20 @@
   {
     "id": "billing",
     "data": {
-      "packages": {
-        "id.ninjasage.tokens.50000": {
-          "name": "50000 Tokens",
-          "description": "50000 Tokens",
-          "price": 99.99,
-          "rewards": [
-            {
-              "id": "tokens_50000",
-              "quantity": 1
-            }
-          ]
-        },
-        "id.ninjasage.tokens.25000": {
-          "name": "25000 Tokens",
-          "description": "25000 Tokens",
-          "price": 49.99,
-          "rewards": [
-            {
-              "id": "tokens_25000",
-              "quantity": 1
-            }
-          ]
-        },
-        "id.ninjasage.tokens.5000": {
-          "name": "5000 Tokens",
-          "description": "5000 Tokens",
-          "price": 9.99,
-          "rewards": [
-            {
-              "id": "tokens_5000",
-              "quantity": 1
-            }
-          ]
-        },
-        "id.ninjasage.tokens.2500": {
-          "name": "2500 Tokens",
-          "description": "2500 Tokens",
-          "price": 4.99,
-          "rewards": [
-            {
-              "id": "tokens_2500",
-              "quantity": 1
-            }
-          ]
-        },
-        "id.ninjasage.tokens.500": {
-          "name": "500 Tokens",
-          "description": "500 Tokens",
-          "price": 0.99,
-          "rewards": [
-            {
-              "id": "tokens_500",
-              "quantity": 1
-            }
-          ]
-        },
-        "id.ninjasage.emblem": {
-          "name": "Ninja Emblem",
-          "description": "Ninja Emblem",
-          "price": 9.99,
-          "rewards": [
-            {
-              "id": "emblem",
-              "quantity": 1
-            }
-          ]
-        },
-        "id.ninjasage.trial.emblem": {
-          "name": "Trial Ninja Emblem",
-          "description": "30 Days Trial Ninja Emblem",
-          "price": 1.99,
-          "rewards": [
-            {
-              "id": "emblem",
-              "quantity": 1
-            }
-          ]
-        },
-        "id.ninjasage.ancestor": {
-          "name": "Ancestor Package",
-          "description": "Ancestor Package",
-          "price": 9.99,
-          "rewards": [
-            {
-              "id": "hair_309_%s",
-              "quantity": 1
-            },
-            {
-              "id": "set_1155_%s",
-              "quantity": 1
-            },
-            {
-              "id": "back_605",
-              "quantity": 1
-            },
-            {
-              "id": "wpn_1341",
-              "quantity": 1
-            }
-          ]
-        }
-      }
+      "packages": [
+        "id.ninjasage.emblem",
+        "id.ninjasage.ancestor",
+        "id.ninjasage.tokens.500",
+        "id.ninjasage.tokens.1000",
+        "id.ninjasage.tokens.2500",
+        "id.ninjasage.tokens.5000",
+        "id.ninjasage.tokens.25000",
+        "id.ninjasage.tokens.50000",
+        "id.ninjasage.elementalars.1",
+        "id.ninjasage.elementalars.2",
+        "id.ninjasage.elementalars.3",
+        "id.ninjasage.elementalars.4"
+      ]
     }
   },
   {
@@ -7687,6 +7623,108 @@
         }
       ],
       "rules": "The Divine Tree is a tree that grows in the village. It is known for its ability to grow fruits and berries\n\n 1. The Divine Tree is a tree that grows in the village. It is known for its ability to grow fruits and berries\n\n 2. The Divine Tree is a tree that grows in the village. It is known for its ability to grow fruits and berries\n\n 3. The Divine Tree is a tree that grows in the village. It is known for its ability to grow fruits and berries"
+    }
+  },
+  {
+    "id": "phantomkyunoki2026",
+    "data": {
+      "bosses": {
+        "id": [
+          "ene_258",
+          "ene_256",
+          "ene_257"
+        ],
+        "name": "Phantom Kyunoki",
+        "description": "Phantom Kyunoki is a ghost that is known for its ability to use phantom energy to attack its enemies.",
+        "levels": [
+          0,
+          5
+        ],
+        "gold": "level * 2500 / 60",
+        "xp": "level * 2500 / 60",
+        "rewards": [
+          "material_2232",
+          "material_2233",
+          "material_2234",
+          "essential_15"
+        ],
+        "background": "mission_1066"
+      },
+      "training": [
+        {
+          "id": "skill_2333",
+          "price": [
+            6499,
+            4999
+          ],
+          "name": "Kinjutsu: Kyunoki's Falling Omen"
+        }
+      ],
+      "rewards_preview": {
+        "hair": [
+          "hair_2375_%s"
+        ],
+        "set": [
+          "set_2416_%s"
+        ],
+        "back": [
+          "back_2407"
+        ],
+        "weapon": [
+          "wpn_2409"
+        ],
+        "skill": []
+      },
+      "milestone_battle": [
+        {
+          "id": "tokens_150",
+          "requirement": 50,
+          "quantity": 1
+        },
+        {
+          "id": "set_716_%s",
+          "requirement": 100,
+          "quantity": 1
+        },
+        {
+          "id": "skill_484",
+          "requirement": 200,
+          "quantity": 1
+        },
+        {
+          "id": "essential_10",
+          "requirement": 300,
+          "quantity": 1
+        }
+      ]
+    }
+  },
+  {
+    "id": "valentine2026",
+    "data": {
+      "paket": {
+        "name": "Valentine Package",
+        "price": [
+          1499,
+          999
+        ],
+        "rewards": [
+          "hair_2376_%s",
+          "set_2417_%s",
+          "back_2408",
+          "wpn_2410"
+        ]
+      },
+      "training": [
+        {
+          "id": "skill_2335",
+          "price": [
+            5499,
+            4999
+          ],
+          "name": "Kinjutsu: Cupid Arrow Strike"
+        }
+      ]
     }
   }
 ]

@@ -6,6 +6,7 @@ use App\Models\Character;
 use App\Models\CharacterDailyScratch;
 use App\Models\CharacterItem;
 use App\Models\User;
+use App\Helpers\GameDataHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -16,7 +17,7 @@ class DailyScratchService
         try {
             return DB::transaction(function () use ($charId) {
                 $char = Character::find($charId);
-                if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+                if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
                 $today = now()->toDateString();
                 $scratch = CharacterDailyScratch::firstOrCreate(
@@ -49,7 +50,7 @@ class DailyScratchService
                     $scratch->save();
                 }
 
-                return [
+                return (object)[
                     'status' => 1,
                     'ticket' => $scratch->tickets,
                     'consecutive' => $scratch->consecutive_days
@@ -57,7 +58,7 @@ class DailyScratchService
             });
         } catch (\Exception $e) {
             Log::error("Error in DailyScratch.getData: " . $e->getMessage());
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
 
@@ -66,11 +67,11 @@ class DailyScratchService
         try {
             return DB::transaction(function () use ($charId) {
                 $char = Character::lockForUpdate()->find($charId);
-                if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+                if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
                 $scratch = CharacterDailyScratch::where('character_id', $charId)->lockForUpdate()->first();
                 if (!$scratch || $scratch->tickets <= 0) {
-                    return ['status' => 2, 'result' => 'No more tickets today!'];
+                    return (object)['status' => 2, 'result' => 'No more tickets today!'];
                 }
 
                 $scratch->tickets -= 1;
@@ -78,17 +79,10 @@ class DailyScratchService
                 $scratch->save();
 
                 // Get rewards from gamedata
-                $gamedata = json_decode(file_get_contents(storage_path('app/gamedata.json')), true);
-                $scratchConfig = null;
-                foreach ($gamedata as $item) {
-                    if ($item['id'] === 'scratch') {
-                        $scratchConfig = $item['data'];
-                        break;
-                    }
-                }
+                $scratchConfig = GameDataHelper::get_gamedata_section('scratch');
 
                 if (!$scratchConfig) {
-                    return ['status' => 0, 'error' => 'Scratch config not found'];
+                    return (object)['status' => 0, 'error' => 'Scratch config not found'];
                 }
 
                 $rewards = $scratchConfig['rewards'];
@@ -106,14 +100,14 @@ class DailyScratchService
                 // Actually, the server should add it.
                 $this->applyReward($char, $reward);
 
-                return [
+                return (object)[
                     'status' => 1,
-                    'reward' => $reward
+                    'reward' => str_replace('~', '', $reward)
                 ];
             });
         } catch (\Exception $e) {
             Log::error("Error in DailyScratch.scratch: " . $e->getMessage());
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
 

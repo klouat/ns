@@ -4,6 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CharacterItem;
+use App\Models\CharacterSkill;
+use App\Models\CharacterTalentSkill;
+use App\Models\CharacterSenjutsuSkill;
+use App\Models\CharacterPet;
 
 class Character extends Model
 {
@@ -42,9 +47,19 @@ class Character extends Model
         'talent_3',
         'equipped_pet_id',
         'is_recruitable',
+        'recruits',
+        'recruiters',
         'senjutsu',
         'character_ss',
         'equipped_senjutsu_skills',
+        'class',
+        'name_color',
+        'equipped_animations',
+    ];
+
+    protected $casts = [
+        'recruits' => 'array',
+        'recruiters' => 'array',
     ];
 
     public function user()
@@ -55,5 +70,30 @@ class Character extends Model
     public function gearPresets()
     {
         return $this->hasMany(CharacterGearPreset::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(CharacterItem::class);
+    }
+
+    public function skills()
+    {
+        return $this->hasMany(CharacterSkill::class);
+    }
+
+    public function talent_skills()
+    {
+        return $this->hasMany(CharacterTalentSkill::class);
+    }
+
+    public function senjutsu_skills()
+    {
+        return $this->hasMany(CharacterSenjutsuSkill::class);
+    }
+
+    public function pets()
+    {
+        return $this->hasMany(CharacterPet::class);
     }
 }

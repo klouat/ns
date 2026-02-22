@@ -50,8 +50,7 @@ class AmfController extends Controller
         $data = $requestBody['data'];
 
         try {
-            // Write directly to stderr to ensure visibility in console
-            file_put_contents('php://stderr', "\n>>> AMF Service Target: {$target}\n", FILE_APPEND);
+
             Log::info("AMF Service: {$target}", ['data' => $data]);
             
             $result = $this->dispatchService($target, $data);
@@ -62,18 +61,18 @@ class AmfController extends Controller
                 'data'     => $result
             ];
         } catch (\Throwable $e) {
-            $errorMsg = "AMF Error {$target}: " . $e->getMessage();
-            file_put_contents('php://stderr', "!!! {$errorMsg}\n" . $e->getTraceAsString() . "\n", FILE_APPEND);
-            Log::error($errorMsg);
+            Log::error("AMF Error {$target}: " . $e->getMessage(), [
+                'trace' => $e->getTraceAsString(),
+            ]);
             
+            // Always return on /onResult so the client callback fires
+            // and the AMF queue continues processing
             return [
-                'target'   => $responseTarget . '/onStatus',
+                'target'   => $responseTarget . '/onResult',
                 'response' => null,
-                'data'     => [
-                    'description' => $e->getMessage(),
-                    'details'     => $e->getTraceAsString(),
-                    'level'       => 'error',
-                    'code'        => $e->getCode()
+                'data'     => (object)[
+                    'status' => 0,
+                    'error'  => $e->getMessage(),
                 ]
             ];
         }
@@ -97,7 +96,6 @@ class AmfController extends Controller
         }
 
         $fullClassName = "App\\Services\\Amf\\" . $serviceName;
-        file_put_contents('php://stderr', ">>> Despatching to: {$fullClassName}@{$methodName}\n", FILE_APPEND);
         Log::info("Despatching to: {$fullClassName}@{$methodName}");
         if (class_exists($fullClassName) == false) {
             $fullClassName = "App\\Services\\" . $serviceName;

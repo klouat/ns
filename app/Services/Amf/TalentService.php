@@ -5,6 +5,7 @@ namespace App\Services\Amf;
 use App\Models\Character;
 use App\Models\CharacterTalentSkill;
 use App\Models\User;
+use App\Helpers\GameDataHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -33,7 +34,7 @@ class TalentService
 
         $data = [];
         foreach ($skills as $skill) {
-            $data[] = [
+            $data[] = (object)[
                 'item_id' => $skill->skill_id,
                 'item_level' => $skill->level,
                 'talent_type' => $skill->talent_id
@@ -42,7 +43,7 @@ class TalentService
 
         $char = Character::find($charId);
 
-        return [
+        return (object)[
             'status' => 1,
             'data' => $data,
             'current_tp' => $char ? $char->tp : 0
@@ -54,11 +55,10 @@ class TalentService
         try {
             return DB::transaction(function () use ($charId, $skillId, $isMax) {
                 $char = Character::lockForUpdate()->find($charId);
-                if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+                if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
                 // 1. Load Game Data
-                $json = file_get_contents(storage_path('app/gamedata.json'));
-                $gameData = json_decode($json, true);
+                $gameData = GameDataHelper::get_gamedata();
                 
                 $foundTalentKey = null;
 
@@ -111,7 +111,7 @@ class TalentService
                 }
 
                 if (!$talentId) {
-                     return ['status' => 2, 'result' => 'You have not learned the talent associated with this skill.'];
+                     return (object)['status' => 2, 'result' => 'You have not learned the talent associated with this skill.'];
                 }
 
                 // --- Existing Update Logic ---
@@ -124,13 +124,13 @@ class TalentService
                 $targetLevel = $currentLevel + 1;
 
                 if ($targetLevel > 10) {
-                    return ['status' => 2, 'result' => 'Skill is already max level.'];
+                    return (object)['status' => 2, 'result' => 'Skill is already max level.'];
                 }
 
                 $tpCost = $this->getTpCost($targetLevel);
                 
                 if ($char->tp < $tpCost) {
-                    return ['status' => 2, 'result' => 'Not enough TP.'];
+                    return (object)['status' => 2, 'result' => 'Not enough TP.'];
                 }
 
                 $char->tp -= $tpCost;
@@ -170,14 +170,14 @@ class TalentService
                     }
                 }
 
-                return [
+                return (object)[
                     'status' => 1,
                     'current_tp' => $char->tp
                 ];
             });
         } catch (\Exception $e) {
             Log::error($e);
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
     
@@ -190,20 +190,20 @@ class TalentService
                 $rewards = [20, 125, 250, 600];
 
                 if (!isset($costs[$packageId])) {
-                     return ['status' => 2, 'result' => 'Invalid package ID'];
+                     return (object)['status' => 2, 'result' => 'Invalid package ID'];
                 }
 
                 $cost = $costs[$packageId];
                 $reward = $rewards[$packageId];
 
                 $char = Character::lockForUpdate()->find($charId);
-                if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+                if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
                 $user = \App\Models\User::lockForUpdate()->find($char->user_id);
-                if (!$user) return ['status' => 0, 'error' => 'User not found'];
+                if (!$user) return (object)['status' => 0, 'error' => 'User not found'];
 
                 if ($user->tokens < $cost) {
-                    return ['status' => 2, 'result' => 'Not enough tokens'];
+                    return (object)['status' => 2, 'result' => 'Not enough tokens'];
                 }
 
                 $user->tokens -= $cost;
@@ -212,7 +212,7 @@ class TalentService
                 $char->tp += $reward;
                 $char->save();
 
-                return [
+                return (object)[
                     'status' => 1,
                     'price' => $cost,
                     'add' => $reward,
@@ -222,7 +222,7 @@ class TalentService
             });
         } catch (\Exception $e) {
             Log::error($e);
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
 
@@ -231,20 +231,19 @@ class TalentService
         try {
             return DB::transaction(function () use ($charId, $type, $targetTalent) {
                 $char = Character::lockForUpdate()->find($charId);
-                if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+                if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
                 $user = User::lockForUpdate()->find($char->user_id);
-                if (!$user) return ['status' => 0, 'error' => 'User not found'];
+                if (!$user) return (object)['status' => 0, 'error' => 'User not found'];
 
                 // 1. Validation: Level
                 $minLevel = ($type === 'Extreme') ? 40 : 50;
                 if ($char->level < $minLevel) {
-                    return ['status' => 2, 'result' => "You must be Level $minLevel to learn this!"];
+                    return (object)['status' => 2, 'result' => "You must be Level $minLevel to learn this!"];
                 }
 
                 // 2. Fetch Talent Info from gamedata.json
-                $gameDataContent = file_get_contents(storage_path('app/gamedata.json'));
-                $gameData = json_decode($gameDataContent, true);
+                $gameData = GameDataHelper::get_gamedata();
                 
                 $talentInfo = null;
                 foreach ($gameData as $section) {
@@ -255,12 +254,12 @@ class TalentService
                 }
 
                 if (!$talentInfo) {
-                    return ['status' => 0, 'error' => 'Talent data not found!'];
+                    return (object)['status' => 0, 'error' => 'Talent data not found!'];
                 }
 
                 // 3. Validation: Emblem Requirement
                 if ($talentInfo['is_emblem'] && $user->account_type == 0) {
-                    return ['status' => 2, 'result' => 'Upgrade to Emblem to learn this talent!'];
+                    return (object)['status' => 2, 'result' => 'Upgrade to Emblem to learn this talent!'];
                 }
 
                 // 4. Validation: Gold and Tokens
@@ -268,13 +267,13 @@ class TalentService
                 $priceTokens = $talentInfo['price_token'] ?? 0;
 
                 if ($char->gold < $priceGold || $user->tokens < $priceTokens) {
-                    return ['status' => 2, 'result' => 'Not enough resources!'];
+                    return (object)['status' => 2, 'result' => 'Not enough resources!'];
                 }
 
                 // 5. Check slot availability
                 $newt = 1;
                 if ($type === 'Extreme') {
-                    if ($char->talent_1 != null) return ['status' => 2, 'result' => 'You already have an Extreme Talent!'];
+                    if ($char->talent_1 != null) return (object)['status' => 2, 'result' => 'You already have an Extreme Talent!'];
                     $char->talent_1 = $targetTalent;
                     $newt = 1;
                 } else if ($type === 'Secret') {
@@ -296,13 +295,13 @@ class TalentService
                         };
                         
                         if ($rankNum < 6) {
-                            return ['status' => 2, 'result' => 'Must reach Special Jounin rank for the second Secret Talent slot!'];
+                            return (object)['status' => 2, 'result' => 'Must reach Special Jounin rank for the second Secret Talent slot!'];
                         }
                         
                         $char->talent_3 = $targetTalent;
                         $newt = 3;
                     } else {
-                        return ['status' => 2, 'result' => 'No empty talent slots!'];
+                        return (object)['status' => 2, 'result' => 'No empty talent slots!'];
                     }
                 }
 
@@ -313,7 +312,7 @@ class TalentService
                 $char->save();
                 $user->save();
 
-                return [
+                return (object)[
                     'status' => 1,
                     'tokens' => $user->tokens,
                     'golds' => $char->gold,
@@ -322,7 +321,7 @@ class TalentService
             });
         } catch (\Exception $e) {
             Log::error($e);
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
 }

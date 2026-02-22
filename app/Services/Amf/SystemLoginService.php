@@ -7,6 +7,7 @@ use App\Models\Character;
 use App\Models\CharacterPet;
 use App\Models\CharacterTalentSkill;
 use App\Models\CharacterSenjutsuSkill;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -25,14 +26,14 @@ class SystemLoginService
             '_rm' => '',
         ];
 
-        return $data;
+        return (object)$data;
     }
 
     public function registerUser($username, $email, $password, $serverString)
     {
         $checkUser = User::where('username', $username)->first();
         if ($checkUser) {
-            return [
+            return (object)[
                 'status' => 2,
                 'result' => 'Username already exists!'
             ];
@@ -40,7 +41,7 @@ class SystemLoginService
 
         $checkEmail = User::where('email', $email)->first();
         if ($checkEmail) {
-            return [
+            return (object)[
                 'status' => 2,
                 'result' => 'Email already exists!'
             ];
@@ -54,12 +55,12 @@ class SystemLoginService
             $user->name = $username;
             $user->save();
 
-            return [
+            return (object)[
                 'status' => 1,
                 'result' => 'Registered Successfully!'
             ];
         } catch (\Exception $e) {
-            return [
+            return (object)[
                 'status' => 0,
                 'error' => 'Internal Server Error'
             ];
@@ -71,7 +72,7 @@ class SystemLoginService
         $user = User::where('username', $username)->first();
         
         if (!$user) {
-            return [
+            return (object)[
                 'status' => 2,
             ];
         }
@@ -79,92 +80,144 @@ class SystemLoginService
         $decryptedPassword = $this->decryptPassword($encryptedPassword, $char__, $char_);
         
         if (!$decryptedPassword) {
-            return ['status' => 2];
+            return (object)['status' => 2];
         }
 
         if (Hash::check($decryptedPassword, $user->password) == false) {
-             return ['status' => 2];
+             return (object)['status' => 2];
         }
 
-        return [
+        $sessionKey = Str::random(32);
+        // Store session key in database for single-session enforcement
+        $user->remember_token = $sessionKey;
+        $user->save();
+
+        return (object)[
             'status' => 1,
             'uid' => $user->id,
-            'sessionkey' => Str::random(32),
+            'sessionkey' => $sessionKey,
             '__' => $char__,
-            'events' => [],
-            'clan_season' => 1,
-            'crew_season' => 1,
-            'sw_season' => 1,
+            'events' => [
+                'welcome_bonus',
+                'mysterious-market',
+                'chunin_package',
+                'special-deals',
+                'monster_hunter_2023',
+                'dragon_hunt_2024',
+                'justice-badge2024',
+                'giveaway-center',
+                'leaderboard',
+                'tailedbeast',
+                'dailygacha',
+                'dragongacha',
+                'exoticpackage',
+                'thanksgiving2025',
+                'elementalars',
+                'xmass2025',
+                'valentine2026',
+                'phantom_kyunoki_2026',
+            ],
+            'clan_season' => 67,
+            'crew_season' => 67,
+            'sw_season' => 67,
             'banners' => []
         ];
     }
 
     public function getCharacterData($charId, $sessionkey)
     {
-        $char = Character::find($charId);
+        // Eager-load all relationships in a single query batch
+        $char = Character::with(['user', 'items', 'skills', 'talent_skills', 'senjutsu_skills', 'pets'])
+            ->find($charId);
+
+        if ($char && !$this->validateSession($char->user_id, $sessionkey)) {
+             return (object)['status' => 0, 'error' => 'Session expired!'];
+        }
 
         if (!$char) {
-            return [
+            return (object)[
                 'status' => 0,
                 'error' => 'Character not found'
             ];
         }
 
-        if ($char->gender == 0) {
-            $genderSuffix = '_0';
-        } else {
-            $genderSuffix = '_1';
-        }
+        $genderSuffix = $char->gender == 0 ? '_0' : '_1';
         
-        $weapon = $char->equipment_weapon;
-        if (!$weapon) {
-            $weapon = 'wpn_01';
-        }
+        $weapon    = $char->equipment_weapon    ?: 'wpn_01';
+        $backItem  = $char->equipment_back      ?: 'back_01';
+        $accessory = $char->equipment_accessory ?: 'accessory_01';
+        $clothing  = $char->equipment_clothing  ?: 'set_01' . $genderSuffix;
 
-        $backItem = $char->equipment_back;
-        if (!$backItem) {
-            $backItem = 'back_01';
-        }
-
-        $accessory = $char->equipment_accessory;
-        if (!$accessory) {
-            $accessory = 'accessory_01';
-        }
-
-        $clothing = $char->equipment_clothing;
-        if (!$clothing) {
-            $clothing = 'set_01' . $genderSuffix;
-        }
-        
         if (is_numeric($char->hair_style)) {
              $hairstyle = 'hair_' . str_pad($char->hair_style, 2, '0', STR_PAD_LEFT) . $genderSuffix;
         } else {
-             $hairstyle = $char->hair_style;
-             if (!$hairstyle) {
-                 $hairstyle = 'hair_01' . $genderSuffix;
-             }
+             $hairstyle = $char->hair_style ?: 'hair_01' . $genderSuffix;
         }
 
-        $hairColor = $char->hair_color;
-        if (!$hairColor) {
-            $hairColor = '0|0';
-        }
+        $hairColor = $char->hair_color ?: '0|0';
+        $skinColor = $char->skin_color ?: 'null|null';
+        $colorHex  = $char->name_color ?: '#000000';
 
-        $skinColor = $char->skin_color;
-        if (!$skinColor) {
-            $skinColor = 'null|null';
-        }
+        // Build all inventory strings from the eager-loaded items collection (1 query total)
+        $items_grouped = $char->items->groupBy('category');
 
-        return [
+        $char_weapons    = $this->buildInventoryFromGroup($items_grouped, 'weapon');
+        $char_back_items = $this->buildInventoryFromGroup($items_grouped, 'back');
+        $char_accessories = $this->buildInventoryFromGroup($items_grouped, 'accessory');
+        $char_sets       = $this->buildInventoryFromGroup($items_grouped, 'set');
+        $char_materials  = $this->buildInventoryFromGroup($items_grouped, 'material');
+        $char_items      = $this->buildInventoryFromGroup($items_grouped, 'item');
+        $char_essentials = $this->buildInventoryFromGroup($items_grouped, 'essential');
+        $char_hairs      = $this->buildCodeFromGroup($items_grouped, 'hair');
+        $char_animations = $this->buildCodeFromGroup($items_grouped, 'animation');
+
+        // Build skill strings from eager-loaded relationships
+        $char_skills = $char->skills->pluck('skill_id')->implode(',');
+
+        $char_talent_skills = $char->talent_skills
+            ->map(fn($s) => $s->skill_id . ':' . $s->level)
+            ->implode(',');
+
+        $char_senjutsu_skills = $char->senjutsu_skills
+            ->map(fn($s) => $s->skill_id . ':' . $s->level)
+            ->implode(',');
+
+        // Pet data using the consistent helper method
+        $equipped_pet_obj = $this->getEquippedPetData($char);
+        $pet_swf = $equipped_pet_obj->pet_swf ?? null;
+        
+        return (object)[
             'status' => 1,
             'error' => 0,
             'announcements' => "ngapain yahhh",
             'account_type' => $char->user->account_type ?? 0,
             'emblem_duration' => $char->user->emblem_duration ?? -1,
-            'events' => (object)[],
+            'events' => [
+                'welcome_bonus',
+                'mysterious-market',
+                'chunin_package',
+                'special-deals',
+                'monster_hunter_2023',
+                'dragon_hunt_2024',
+                'justice-badge2024',
+                'giveaway-center',
+                'leaderboard',
+                'tailedbeast',
+                'dailygacha',
+                'dragongacha',
+                'exoticpackage',
+                'thanksgiving2025',
+                'elementalars',
+                'xmass2025',
+                'valentine2026',
+                'phantom_kyunoki_2026',
+            ],
             'has_unread_mails' => false,
-            
-            'character_data' => [
+            'clan_season' => 1,
+            'crew_season' => 1,
+            'sw_season' => 1,
+            'banners' => [],
+            'character_data' => (object)[
                 'character_id' => $char->id,
                 'character_name' => $char->name,
                 'character_level' => $char->level,
@@ -179,6 +232,7 @@ class SystemLoginService
                     'Tensai Special Jounin' => 7,
                     'Ninja Tutor' => 8,
                     'Senior Ninja Tutor' => 9,
+                    'Sage' => 10,
                     default => 1
                 },
                 'character_merit' => 0,
@@ -192,13 +246,19 @@ class SystemLoginService
                 'character_gold' => $char->gold,
                 'character_tp' => $char->tp,
                 'character_ss' => $char->character_ss,
-                'character_class' => null,
+                'character_class' => $char->class,
                 'character_senjutsu' => $char->senjutsu,
                 'character_pvp_points' => 0,
-                'character_pet_id' => $char->equipped_pet_id ?? 0
+                'character_pet_id' => $char->equipped_pet_id ?? 0, // Add here
+                'character_pet' => $pet_swf // Often needed here too
             ],
-            
-            'character_points' => [
+            'rgb_data' => [
+                [
+                    'id' => (string)$char->id,
+                    'data' => $colorHex
+                ]
+            ],
+            'character_points' => (object)[
                 'atrrib_wind' => $char->point_wind,
                 'atrrib_fire' => $char->point_fire,
                 'atrrib_lightning' => $char->point_lightning,
@@ -207,7 +267,7 @@ class SystemLoginService
                 'atrrib_free' => $char->point_free
             ],
             
-            'character_slots' => [
+            'character_slots' => (object)[
                 'weapons' => 100,
                 'back_items' => 100,
                 'accessories' => 100,
@@ -215,7 +275,7 @@ class SystemLoginService
                 'clothing' => 100
             ],
             
-            'character_sets' => [
+            'character_sets' => (object)[
                 'weapon' => $weapon,
                 'back_item' => $backItem,
                 'accessory' => $accessory,
@@ -226,63 +286,136 @@ class SystemLoginService
                 'hair_color' => $hairColor,
                 'skin_color' => $skinColor,
                 'face' => 'face_01' . $genderSuffix,
-                'pet' => $char->equipped_pet_id ? \App\Models\CharacterPet::where('character_id', $char->id)->find($char->equipped_pet_id)?->pet_swf : null,
-                'anims' => []
+                'pet' => $pet_swf,
+                'character_pet_id' => $char->equipped_pet_id ? (int)$char->equipped_pet_id : 0, // Add here
+                'anims' => $char->equipped_animations ? (object)json_decode($char->equipped_animations, true) : (object)[]
             ],
             
-            'character_inventory' => [
-                'char_weapons' => $this->getInventoryString($char, 'weapon'),
-                'char_back_items' => $this->getInventoryString($char, 'back'),
-                'char_accessories' => $this->getInventoryString($char, 'accessory'),
-                'char_sets' => $this->getInventoryString($char, 'set'),
-                'char_hairs' => $this->getCodeString($char, 'hair'), 
-                'char_skills' => $this->getSkillsString($char),
-                'char_talent_skills' => $this->getTalentSkillsString($char),
-                'char_senjutsu_skills' => $this->getSenjutsuSkillsString($char),
-                'char_materials' => $this->getInventoryString($char, 'material'),
-                'char_items' => $this->getInventoryString($char, 'item'),
-                'char_essentials' => $this->getInventoryString($char, 'essential'),
-                'char_animations' => ''
+            'character_inventory' => (object)[
+                'char_weapons' => $char_weapons,
+                'char_back_items' => $char_back_items,
+                'char_accessories' => $char_accessories,
+                'char_sets' => $char_sets,
+                'char_hairs' => $char_hairs,
+                'char_skills' => $char_skills,
+                'char_talent_skills' => $char_talent_skills,
+                'char_senjutsu_skills' => $char_senjutsu_skills,
+                'char_materials' => $char_materials,
+                'char_items' => $char_items,
+                'char_essentials' => $char_essentials,
+                'char_animations' => $char_animations
             ],
             
             'features' => [
                 'pvp'
             ],
-            'recruiters' => [],
-            'recruit_data' => [],
-            'pet_data' => $this->getEquippedPetData($char),
+            'recruiters' => $this->getRecruiters($char),
+            'recruit_data' => $this->getRecruitData($char),
+            'pet_data' => $equipped_pet_obj,
             'clan' => null
         ];
     }
 
+    /**
+     * Build "item_id:quantity" string from pre-grouped items collection.
+     */
+    private function buildInventoryFromGroup($grouped, string $category): string
+    {
+        if (!isset($grouped[$category])) {
+            return '';
+        }
+
+        return $grouped[$category]
+            ->map(fn($item) => $item->item_id . ':' . $item->quantity)
+            ->implode(',');
+    }
+
+    /**
+     * Build "item_id" string (no quantity) from pre-grouped items collection.
+     */
+    private function buildCodeFromGroup($grouped, string $category): string
+    {
+        $parts = [];
+        if (isset($grouped[$category])) {
+            $parts = $grouped[$category]->pluck('item_id')->toArray();
+        }
+
+        if ($category === 'animation') {
+             $defaultAnimations = ['ani_1', 'ani_3', 'ani_5', 'ani_7', 'ani_9', 'ani_10', 'ani_11', 'ani_14'];
+             $parts = array_unique(array_merge($parts, $defaultAnimations));
+        }
+
+        return implode(',', $parts);
+    }
+
+    private function getRecruiters($char)
+    {
+        $recruits = $char->recruits ?? [];
+        
+        if (empty($recruits)) {
+            return [];
+        }
+        
+        $recruitObjects = array_map(function($id) {
+            $stringId = str_starts_with($id, 'npc_') ? $id : 'char_' . $id;
+            return (object)['recruited_char_id' => $stringId];
+        }, $recruits);
+        
+        $hash = hash('sha256', (string)$recruitObjects[0]->recruited_char_id);
+        return [$recruitObjects, $hash];
+    }
+
+    private function getRecruitData($char)
+    {
+        $recruits = $char->recruits ?? [];
+        if (empty($recruits)) {
+            return [];
+        }
+
+        $friendService = new FriendService();
+        $data = [];
+
+        // Batch-load all recruit characters with user relationship
+        $characters = Character::with('user')
+            ->whereIn('id', $recruits)
+            ->get()
+            ->keyBy('id');
+        
+        foreach ($recruits as $id) {
+            $c = $characters->get($id);
+            if ($c) {
+                $data[] = $friendService->formatFriendData($c);
+            }
+        }
+        
+        return $data;
+    }
+
     public function getAllCharacters($uid, $sessionkey)
     {
+        if (!$this->validateSession($uid, $sessionkey)) {
+            return (object)['status' => 0, 'error' => 'Session expired!'];
+        }
+
         $characters = Character::where('user_id', $uid)->get();
         $user = User::find($uid);
         
         $accountData = [];
         
         foreach ($characters as $char) {
-            $rank = 1;
-            if ($char->rank == 'Chunin') {
-                $rank = 2;
-            } else if ($char->rank == 'Tensai Chunin') {
-                $rank = 3; 
-            } else if ($char->rank == 'Jounin') {
-                 $rank = 4;
-            } else if ($char->rank == 'Tensai Jounin') {
-                 $rank = 5;
-            } else if ($char->rank == 'Special Jounin') {
-                 $rank = 6;
-            } else if ($char->rank == 'Tensai Special Jounin') {
-                 $rank = 7;
-            } else if ($char->rank == 'Ninja Tutor') {
-                 $rank = 8;
-            } else if ($char->rank == 'Senior Ninja Tutor') {
-                 $rank = 9;
-            }
+            $rank = match($char->rank) {
+                'Chunin'                => 2,
+                'Tensai Chunin'         => 3,
+                'Jounin'                => 4,
+                'Tensai Jounin'         => 5,
+                'Special Jounin'        => 6,
+                'Tensai Special Jounin' => 7,
+                'Ninja Tutor'           => 8,
+                'Senior Ninja Tutor'    => 9,
+                default                 => 1
+            };
 
-            $accountData[] = [
+            $accountData[] = (object)[
                 'char_id' => $char->id,
                 'acc_id' => $uid,
                 'character_name' => $char->name,
@@ -302,7 +435,7 @@ class SystemLoginService
             ];
         }
 
-        return [
+        return (object)[
             'status' => 1,
             'error' => 0,
             'account_type' => $user->account_type ?? 0,
@@ -340,92 +473,60 @@ class SystemLoginService
         $pad = $blocksize - (strlen($text) % $blocksize);
         return $text . str_repeat(chr($pad), $pad);
     }
-    private function getInventoryString($char, $category)
-    {
-        $items = \App\Models\CharacterItem::where('character_id', $char->id)
-            ->where('category', $category)
-            ->get();
-
-        $parts = [];
-        foreach ($items as $item) {
-            $parts[] = $item->item_id . ':' . $item->quantity;
-        }
-
-        return implode(',', $parts);
-    }
-
-    private function getCodeString($char, $category)
-    {
-         $items = \App\Models\CharacterItem::where('character_id', $char->id)
-            ->where('category', $category)
-            ->get();
-
-        $parts = [];
-        foreach ($items as $item) {
-            $parts[] = $item->item_id;
-        }
-
-        return implode(',', $parts);
-    }
-
-    private function getSkillsString($char)
-    {
-        $skills = \App\Models\CharacterSkill::where('character_id', $char->id)->get();
-        
-        $parts = [];
-        foreach ($skills as $skill) {
-            $parts[] = $skill->skill_id;
-        }
-
-        $result = implode(',', $parts);
-        \Illuminate\Support\Facades\Log::info("Skills for char {$char->id}: {$result}");
-        file_put_contents('php://stderr', ">>> Skills for char {$char->id}: {$result}\n", FILE_APPEND);
-        
-        
-        return $result;
-    }
 
     public function getTalentSkillsString($char)
     {
-        $skills = CharacterTalentSkill::where('character_id', $char->id)->get();
-        $parts = [];
-        foreach ($skills as $skill) {
-            $parts[] = $skill->skill_id . ':' . $skill->level;
-        }
-        return implode(',', $parts);
+        // Use eager-loaded relationship if available, fallback to query
+        $skills = $char->relationLoaded('talent_skills')
+            ? $char->talent_skills
+            : CharacterTalentSkill::where('character_id', $char->id)->get();
+
+        return $skills->map(fn($s) => $s->skill_id . ':' . $s->level)->implode(',');
     }
 
     public function getSenjutsuSkillsString($char)
     {
-        $skills = \App\Models\CharacterSenjutsuSkill::where('character_id', $char->id)->get();
-        $parts = [];
-        foreach ($skills as $skill) {
-            $parts[] = $skill->skill_id . ':' . $skill->level;
-        }
-        return implode(',', $parts);
+        // Use eager-loaded relationship if available, fallback to query
+        $skills = $char->relationLoaded('senjutsu_skills')
+            ? $char->senjutsu_skills
+            : CharacterSenjutsuSkill::where('character_id', $char->id)->get();
+
+        return $skills->map(fn($s) => $s->skill_id . ':' . $s->level)->implode(',');
     }
 
     public function getEquippedPetData($char)
     {
         if (!$char->equipped_pet_id) {
-            return [];
+            return (object)[];
         }
 
-        $pet = CharacterPet::where('character_id', $char->id)->find($char->equipped_pet_id);
+        // Use eager-loaded pets if available
+        $pet = $char->relationLoaded('pets')
+            ? $char->pets->firstWhere('id', $char->equipped_pet_id)
+            : CharacterPet::where('character_id', $char->id)->find($char->equipped_pet_id);
+
         if (!$pet) {
-            return [];
+            return (object)[];
         }
 
-        return [
-            [
-                'pet_id' => $pet->id,
-                'pet_name' => $pet->pet_name,
-                'pet_level' => $pet->pet_level,
-                'pet_swf' => $pet->pet_swf,
-                'pet_skills' => $pet->pet_skills,
-                'pet_mp' => $pet->pet_mp,
-                'pet_xp' => $pet->pet_xp,
-            ]
+        return (object)[
+            'pet_id'     => $pet->id,
+            'pet_name'   => $pet->pet_name,
+            'pet_level'  => $pet->pet_level,
+            'pet_swf'    => $pet->pet_swf,
+            'pet_skills' => $pet->pet_skills,
+            'pet_mp'     => $pet->pet_mp,
+            'pet_xp'     => $pet->pet_xp,
         ];
+    }
+
+    private function validateSession($userId, $sessionKey)
+    {
+        $user = User::find($userId);
+
+        if (!$user || $user->remember_token !== $sessionKey) {
+            return false;
+        }
+        return true;
     }
 }

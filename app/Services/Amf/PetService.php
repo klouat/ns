@@ -4,6 +4,7 @@ namespace App\Services\Amf;
 
 use App\Models\Character;
 use App\Models\CharacterPet;
+use App\Helpers\GameDataHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -26,11 +27,11 @@ class PetService
                 case 'renamePet':
                     return $this->renamePet($params[0], $params[1], $params[2], $params[3]);
                 default:
-                    return ['status' => 0, 'error' => "Action {$action} not implemented"];
+                    return (object)['status' => 0, 'error' => "Action {$action} not implemented"];
             }
         } catch (\Exception $e) {
             Log::error($e);
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
 
@@ -39,62 +40,86 @@ class PetService
         $charId = $params[0];
         $sessionKey = $params[1];
 
+        $char = Character::find($charId);
         $pets = CharacterPet::where('character_id', $charId)->get();
+
+        $equippedId = $char ? $char->equipped_pet_id : null;
+
+        Log::info("PetService::getPets charId: $charId, equippedId: " . json_encode($equippedId));
 
         $petList = [];
         foreach ($pets as $pet) {
-            $petList[] = [
+            // Strict check ensuring we are comparing same types (strings/ints safe)
+            $isEquipped = ($equippedId !== null && (string)$equippedId === (string)$pet->id) ? 1 : 0;
+            
+            if ($isEquipped) {
+                 Log::info("  > Found equipped pet: {$pet->id} ({$pet->pet_name})");
+            }
+
+            $petList[] = (object)[
                 'pet_id' => $pet->id,
                 'pet_name' => $pet->pet_name,
                 'pet_level' => $pet->pet_level,
+                'pet_type' => 1,
+                'pet_status' => $isEquipped, 
+                'is_equipped' => $isEquipped, // Fallback field
+                'status' => $isEquipped, // Fallback field
                 'pet_swf' => $pet->pet_swf,
                 'pet_skills' => $pet->pet_skills,
                 'pet_mp' => $pet->pet_mp,
+                'pet_xu' => 0,
                 'pet_xp' => $pet->pet_xp,
+                'trn_cost' => 0 
             ];
         }
 
-        return [
+        return (object)[
             'status' => 1,
+            'character_pet_id' => $equippedId, // Critical for client sync
+            'result' => 'ok', 
             'pets' => $petList
         ];
     }
 
     private function equipPet($params)
     {
-        $charId = $params[0];
-        $sessionKey = $params[1];
-        $petId = $params[2];
+        return DB::transaction(function() use ($params) {
+            $charId = $params[0];
+            $sessionKey = $params[1];
+            $petId = $params[2];
 
-        $char = Character::find($charId);
-        if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+            $char = Character::lockForUpdate()->find($charId);
+            if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
-        $pet = CharacterPet::where('character_id', $charId)->find($petId);
-        if (!$pet) return ['status' => 0, 'error' => 'Pet not found'];
+            $pet = CharacterPet::where('character_id', $charId)->find($petId);
+            if (!$pet) return (object)['status' => 0, 'error' => 'Pet not found'];
 
-        $char->equipped_pet_id = $petId;
-        $char->save();
+            $char->equipped_pet_id = $petId;
+            $char->save();
 
-        return [
-            'status' => 1,
-            'pet_id' => $petId
-        ];
+            return (object)[
+                'status' => 1,
+                'pet_id' => $petId
+            ];
+        });
     }
 
     private function unequipPet($params)
     {
-        $charId = $params[0];
-        $sessionKey = $params[1];
+        return DB::transaction(function() use ($params) {
+            $charId = $params[0];
+            $sessionKey = $params[1];
 
-        $char = Character::find($charId);
-        if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+            $char = Character::lockForUpdate()->find($charId);
+            if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
-        $char->equipped_pet_id = null;
-        $char->save();
+            $char->equipped_pet_id = null;
+            $char->save();
 
-        return [
-            'status' => 1
-        ];
+            return (object)[
+                'status' => 1
+            ];
+        });
     }
 
     private function learnSkill($params)
@@ -106,13 +131,13 @@ class PetService
         $learnMethod = $params[4]; // "mc1" or "mc2"
 
         $char = Character::find($charId);
-        if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+        if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
         $pet = CharacterPet::where('character_id', $charId)->find($petId);
-        if (!$pet) return ['status' => 0, 'error' => 'Pet not found'];
+        if (!$pet) return (object)['status' => 0, 'error' => 'Pet not found'];
 
         if ($skillSlot < 1 || $skillSlot > 6) {
-            return ['status' => 0, 'error' => 'Invalid skill slot'];
+            return (object)['status' => 0, 'error' => 'Invalid skill slot'];
         }
 
         $skills = explode(',', $pet->pet_skills);
@@ -134,7 +159,7 @@ class PetService
         // TODO: Deduct resources (Gold + Material for mc1, Tokens for mc2)
         // Currently bypassing deduction to ensure skill learning works first.
 
-        return ['status' => 1];
+        return (object)['status' => 1];
     }
 
     private function buyPet($params)
@@ -144,14 +169,13 @@ class PetService
         $petSwf = $params[2]; // e.g. "pet_yamaru"
 
         $char = Character::lockForUpdate()->find($charId);
-        if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+        if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
         $user = \App\Models\User::lockForUpdate()->find($char->user_id);
-        if (!$user) return ['status' => 0, 'error' => 'User not found'];
+        if (!$user) return (object)['status' => 0, 'error' => 'User not found'];
 
         // 1. Find price from gamedata.json
-        $json = file_get_contents(storage_path('app/gamedata.json'));
-        $data = json_decode($json, true);
+        $data = GameDataHelper::get_gamedata();
         $priceStr = null;
         foreach ($data as $section) {
             if ($section['id'] === 'pet_shop' || $section['id'] === 'tailed_beast') {
@@ -164,17 +188,17 @@ class PetService
             }
         }
 
-        if (!$priceStr) return ['status' => 0, 'error' => 'Pet price not found'];
+        if (!$priceStr) return (object)['status' => 0, 'error' => 'Pet price not found'];
 
         // 2. Validate resources
         $price = 0;
         if (str_starts_with($priceStr, 'gold_')) {
             $price = (int)str_replace(['gold_', 'M'], ['', '000000'], $priceStr);
-            if ($char->gold < $price) return ['status' => 2, 'result' => 'Not enough Gold'];
+            if ($char->gold < $price) return (object)['status' => 2, 'result' => 'Not enough Gold'];
             $char->gold -= $price;
         } else if (str_starts_with($priceStr, 'token_')) {
             $price = (int)str_replace('token_', '', $priceStr);
-            if ($user->tokens < $price) return ['status' => 2, 'result' => 'Not enough Tokens'];
+            if ($user->tokens < $price) return (object)['status' => 2, 'result' => 'Not enough Tokens'];
             $user->tokens -= $price;
         }
 
@@ -192,7 +216,7 @@ class PetService
         $char->save();
         $user->save();
 
-        return [
+        return (object)[
             'status' => 1,
             'pet_id' => $pet->id
         ];
@@ -201,18 +225,18 @@ class PetService
     public function renamePet($charId, $sessionKey, $petId, $newName)
     {
         if (empty($newName)) {
-             return ['status' => 0, 'error' => 'Invalid name'];
+             return (object)['status' => 0, 'error' => 'Invalid name'];
         }
 
         $char = Character::find($charId);
-        if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+        if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
         $pet = CharacterPet::where('character_id', $charId)->find($petId);
-        if (!$pet) return ['status' => 0, 'error' => 'Pet not found'];
+        if (!$pet) return (object)['status' => 0, 'error' => 'Pet not found'];
 
         $pet->pet_name = $newName;
         $pet->save();
 
-        return ['status' => 1];
+        return (object)['status' => 1];
     }
 }

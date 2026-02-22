@@ -15,16 +15,16 @@ class SenjutsuService
             return DB::transaction(function () use ($charId, $senjutsuType) {
                 $char = Character::lockForUpdate()->find($charId);
                 if (!$char) {
-                    return ['status' => 0, 'error' => 'Character not found'];
+                    return (object)['status' => 0, 'error' => 'Character not found'];
                 }
 
                 $user = User::lockForUpdate()->find($char->user_id);
                 if (!$user) {
-                    return ['status' => 0, 'error' => 'User not found'];
+                    return (object)['status' => 0, 'error' => 'User not found'];
                 }
 
                 if ($char->senjutsu) {
-                    return ['status' => 2, 'result' => 'You already learned a Sage Mode!'];
+                    return (object)['status' => 2, 'result' => 'You already learned a Sage Mode!'];
                 }
 
                 // Check type and cost
@@ -33,11 +33,11 @@ class SenjutsuService
                 $costTokens = 0;
 
                 if (!in_array($senjutsuType, ['toad', 'snake'])) {
-                    return ['status' => 0, 'error' => 'Invalid Senjutsu type'];
+                    return (object)['status' => 0, 'error' => 'Invalid Senjutsu type'];
                 }
 
                 if ($char->gold < $costGold) {
-                    return ['status' => 2, 'result' => 'Not enough Gold!'];
+                    return (object)['status' => 2, 'result' => 'Not enough Gold!'];
                 }
 
                 // Process purchase
@@ -47,26 +47,26 @@ class SenjutsuService
 
                 $typeName = ucfirst($senjutsuType) . ' Sage Mode';
 
-                return [
+                return (object)[
                     'status' => 1,
                     'result' => "You have learned {$typeName}!",
                     'type' => $senjutsuType
                 ];
             });
         } catch (\Exception $e) {
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
 
     public function getSenjutsuSkills($charId, $sessionKey)
     {
         $char = Character::find($charId);
-        if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+        if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
         $skills = \App\Models\CharacterSenjutsuSkill::where('character_id', $charId)->get();
         $data = $skills->map(function ($s) use ($char) {
             // Force lowercase and ensure both ID fields are present
-            return [
+            return (object)[
                 'id' => (string)$s->skill_id,
                 'skill_id' => (string)$s->skill_id,
                 'level' => (int)$s->level,
@@ -74,14 +74,14 @@ class SenjutsuService
             ];
         })->values()->all();
 
-        return ['status' => 1, 'data' => $data];
+        return (object)['status' => 1, 'data' => $data];
     }
 
     public function upgradeSkill($charId, $sessionKey, $skillId, $isMax)
     {
         return DB::transaction(function () use ($charId, $skillId, $isMax) {
             $char = Character::lockForUpdate()->find($charId);
-            if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+            if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
             $user = User::find($char->user_id); // Assuming session check passes
 
@@ -93,7 +93,7 @@ class SenjutsuService
             $startLevel = $currentLevel + 1;
             $endLevel = $isMax ? 10 : $startLevel;
 
-            if ($startLevel > 10) return ['status' => 0, 'error' => 'Max level reached'];
+            if ($startLevel > 10) return (object)['status' => 0, 'error' => 'Max level reached'];
 
             // Calculate total cost
             $totalSS = 0;
@@ -124,10 +124,10 @@ class SenjutsuService
                         }
                     }
                     if ($endLevel == $currentLevel) {
-                         return ['status' => 2, 'result' => 'Not enough Sage Scroll (SS)!'];
+                         return (object)['status' => 2, 'result' => 'Not enough Sage Scroll (SS)!'];
                     }
                 } else {
-                    return ['status' => 2, 'result' => 'Not enough Sage Scroll (SS)!'];
+                    return (object)['status' => 2, 'result' => 'Not enough Sage Scroll (SS)!'];
                 }
             }
 
@@ -159,7 +159,7 @@ class SenjutsuService
                 ]);
             }
 
-            return [
+            return (object)[
                 'status' => 1, 
                 'spent_ss' => (int)$totalSS, 
                 'level' => (int)$endLevel,
@@ -174,7 +174,7 @@ class SenjutsuService
     {
         return DB::transaction(function () use ($charId, $packageIndex) {
             $char = Character::lockForUpdate()->find($charId);
-            if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+            if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
             $user = User::lockForUpdate()->find($char->user_id);
 
             $packages = [
@@ -184,12 +184,12 @@ class SenjutsuService
                 3 => ['price' => 400, 'amount' => 250]
             ];
 
-            if (!isset($packages[$packageIndex])) return ['status' => 0, 'error' => 'Invalid package'];
+            if (!isset($packages[$packageIndex])) return (object)['status' => 0, 'error' => 'Invalid package'];
 
             $pkg = $packages[$packageIndex];
             
             if ($user->tokens < $pkg['price']) {
-                return ['status' => 2, 'result' => 'Not enough Tokens!'];
+                return (object)['status' => 2, 'result' => 'Not enough Tokens!'];
             }
 
             $user->tokens -= $pkg['price'];
@@ -198,7 +198,7 @@ class SenjutsuService
             $char->character_ss += $pkg['amount'];
             $char->save();
 
-            return [
+            return (object)[
                 'status' => 1,
                 'result' => 'Sage Scroll bought successfully!',
                 'ss' => $char->character_ss
@@ -209,7 +209,7 @@ class SenjutsuService
     public function equipSkill($charId, $sessionKey, $skills)
     {
          $char = Character::find($charId);
-         if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+         if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
          
          // $skills is array of skill IDs
          // Validate formatting if needed, join to string
@@ -222,7 +222,7 @@ class SenjutsuService
          $char->equipped_senjutsu_skills = $str;
          $char->save();
          
-         return ['status' => 1, 'skills' => $str];
+         return (object)['status' => 1, 'skills' => $str];
     }
 
 }

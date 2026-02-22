@@ -18,6 +18,7 @@ class User extends Authenticatable
         'tokens',
         'account_type',
         'emblem_duration',
+        'claimed_scroll',
     ];
 
     protected $hidden = [

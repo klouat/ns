@@ -9,6 +9,14 @@ use App\Models\CharacterItem;
 use App\Models\Mail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use App\Models\LimitedStoreItem;
+use App\Models\HuntingHouseItem;
+use App\Models\FriendshipShopItem;
+use App\Models\MaterialMarketItem;
+use App\Models\SpecialDeal;
+use App\Models\Giveaway;
+use App\Models\AttendanceReward;
+use Illuminate\Support\Str;
 
 class AdminPanelController extends Controller
 {
@@ -36,7 +44,7 @@ class AdminPanelController extends Controller
             return [];
         }
 
-        $allowedTypes = ['wpn', 'set', 'hair', 'back', 'accessory'];
+        $allowedTypes = ['wpn', 'set', 'hair', 'back', 'accessory', 'item'];
 
         $filtered = array_filter($items, function ($item) use ($allowedTypes) {
             return isset($item['type']) && in_array($item['type'], $allowedTypes);
@@ -225,7 +233,7 @@ class AdminPanelController extends Controller
 
         Mail::create([
             'character_id' => $request->character_id,
-            'sender_name' => 'Admin',
+            'sender_name' => $request->sender_name ?: 'Admin',
             'title' => $request->title,
             'body' => $request->body,
             'type' => $request->type,
@@ -308,5 +316,366 @@ class AdminPanelController extends Controller
         ]);
 
         return redirect()->route('panel.characters')->with('success', "Updated Character '{$character->name}' and User Account!");
+    }
+
+    public function limitedStore()
+    {
+        $items = LimitedStoreItem::orderBy('group_id')->orderBy('sort_order')->get();
+        // Get generic list of skills from JSON for the dropdown
+        $allSkills = $this->getSkillsData();
+        return view('panel.limited_store', compact('items', 'allSkills'));
+    }
+
+    public function addLimitedStoreGroup(Request $request)
+    {
+        $request->validate([
+            'base_skill_id' => 'required|string',
+            'upgrade_skill_id' => 'required|string',
+            'base_price' => 'required|integer',
+            'upgrade_price' => 'required|integer',
+            'group_name' => 'required|string',
+        ]);
+
+        // Create Group ID (slugify name or random)
+        $groupId = 'group_' . Str::slug($request->group_name) . '_' . Str::random(5);
+
+        // Add Base
+        LimitedStoreItem::create([
+            'item_id' => $request->base_skill_id,
+            'price_token' => $request->base_price,
+            'category' => 'skill',
+            'group_id' => $groupId,
+            'sort_order' => 1,
+            'is_active' => true
+        ]);
+
+        // Add Upgrade
+        LimitedStoreItem::create([
+            'item_id' => $request->upgrade_skill_id,
+            'price_token' => $request->upgrade_price,
+            'category' => 'skill',
+            'group_id' => $groupId,
+            'sort_order' => 2,
+            'is_active' => true
+        ]);
+
+        return redirect()->back()->with('success', 'Limited Store Group Added!');
+    }
+
+    public function updateLimitedStoreGroup(Request $request)
+    {
+        $request->validate([
+            'group_id' => 'required|string',
+            'base_price' => 'required|integer',
+            'upgrade_price' => 'required|integer',
+        ]);
+
+        // Update Base (Order 1)
+        LimitedStoreItem::where('group_id', $request->group_id)
+            ->where('sort_order', 1)
+            ->update(['price_token' => $request->base_price]);
+
+        // Update Upgrade (Order 2)
+        LimitedStoreItem::where('group_id', $request->group_id)
+            ->where('sort_order', 2)
+            ->update(['price_token' => $request->upgrade_price]);
+
+        return redirect()->back()->with('success', 'Group prices updated!');
+    }
+
+    public function deleteLimitedStoreGroup($groupId)
+    {
+        LimitedStoreItem::where('group_id', $groupId)->delete();
+        return redirect()->back()->with('success', 'Group deleted!');
+    }
+
+    // --- HUNTING HOUSE ---
+    public function huntingHouse()
+    {
+        $items = HuntingHouseItem::orderBy('sort_order')->paginate(20);
+        $allItems = $this->getItemsData(); // For lookup
+        $allSkills = $this->getSkillsData();
+        return view('panel.hunting_house', compact('items', 'allItems', 'allSkills'));
+    }
+
+    public function addHuntingHouseItem(Request $request)
+    {
+        $request->validate([
+            'item_id' => 'required|string',
+            'requirements' => 'required|string', // Format: item_id:qty, item_id:qty
+            'category' => 'required|string',
+        ]);
+
+        $reqs = explode(',', $request->requirements);
+        $materials = [];
+        $quantities = [];
+
+        foreach ($reqs as $req) {
+            $parts = explode(':', trim($req));
+            if (count($parts) == 2) {
+                $materials[] = $parts[0];
+                $quantities[] = intval($parts[1]);
+            }
+        }
+
+        HuntingHouseItem::create([
+            'item_id' => $request->item_id,
+            'category' => $request->category,
+            'materials' => $materials,
+            'quantities' => $quantities,
+            'sort_order' => HuntingHouseItem::max('sort_order') + 1,
+        ]);
+
+        return redirect()->back()->with('success', 'Hunting House Item Added!');
+    }
+
+    public function deleteHuntingHouseItem($id)
+    {
+        HuntingHouseItem::destroy($id);
+        return redirect()->back()->with('success', 'Item deleted!');
+    }
+
+    // --- MATERIAL MARKET ---
+    public function materialMarket()
+    {
+        $items = MaterialMarketItem::orderBy('sort_order')->paginate(20);
+        $allItems = $this->getItemsData();
+        $allSkills = $this->getSkillsData();
+        return view('panel.material_market', compact('items', 'allItems', 'allSkills'));
+    }
+
+    public function addMaterialMarketItem(Request $request)
+    {
+        $request->validate([
+            'item_id' => 'required|string',
+            'requirements' => 'required|string',
+            'category' => 'required|string',
+        ]);
+
+        $reqs = explode(',', $request->requirements);
+        $materials = [];
+        $quantities = [];
+
+        foreach ($reqs as $req) {
+            $parts = explode(':', trim($req));
+            if (count($parts) == 2) {
+                $materials[] = $parts[0];
+                $quantities[] = intval($parts[1]);
+            }
+        }
+
+        MaterialMarketItem::create([
+            'item_id' => $request->item_id,
+            'category' => $request->category,
+            'materials' => $materials,
+            'quantities' => $quantities,
+            'sort_order' => MaterialMarketItem::max('sort_order') + 1,
+        ]);
+
+        return redirect()->back()->with('success', 'Material Market Item Added!');
+    }
+
+    public function deleteMaterialMarketItem($id)
+    {
+        MaterialMarketItem::destroy($id);
+        return redirect()->back()->with('success', 'Item deleted!');
+    }
+
+    // --- FRIENDSHIP SHOP ---
+    public function friendshipShop()
+    {
+        $items = FriendshipShopItem::orderBy('price')->paginate(20);
+        $allItems = $this->getItemsData();
+        return view('panel.friendship_shop', compact('items', 'allItems'));
+    }
+
+    public function addFriendshipShopItem(Request $request)
+    {
+        $request->validate([
+            'item_id' => 'required|string',
+            'price' => 'required|integer',
+        ]);
+
+        FriendshipShopItem::create([
+            'item' => $request->item_id, // Note: field is 'item'
+            'price' => $request->price,
+        ]);
+
+        return redirect()->back()->with('success', 'Friendship Shop Item Added!');
+    }
+
+    public function deleteFriendshipShopItem($id)
+    {
+        FriendshipShopItem::destroy($id);
+        return redirect()->back()->with('success', 'Item deleted!');
+    }
+
+    // --- UPDATE METHODS ---
+
+    public function updateHuntingHouseItem(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer',
+            'requirements' => 'required|string',
+        ]);
+
+        $reqs = explode(',', $request->requirements);
+        $materials = [];
+        $quantities = [];
+
+        foreach ($reqs as $req) {
+            $parts = explode(':', trim($req));
+            if (count($parts) == 2) {
+                $materials[] = $parts[0];
+                $quantities[] = intval($parts[1]);
+            }
+        }
+
+        HuntingHouseItem::where('id', $request->id)->update([
+            'materials' => $materials,
+            'quantities' => $quantities,
+        ]);
+
+        return redirect()->back()->with('success', 'Exchange updated!');
+    }
+
+    public function updateMaterialMarketItem(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer',
+            'requirements' => 'required|string',
+        ]);
+
+        $reqs = explode(',', $request->requirements);
+        $materials = [];
+        $quantities = [];
+
+        foreach ($reqs as $req) {
+            $parts = explode(':', trim($req));
+            if (count($parts) == 2) {
+                $materials[] = $parts[0];
+                $quantities[] = intval($parts[1]);
+            }
+        }
+
+        MaterialMarketItem::where('id', $request->id)->update([
+            'materials' => $materials,
+            'quantities' => $quantities,
+        ]);
+
+        return redirect()->back()->with('success', 'Exchange updated!');
+    }
+
+    public function updateFriendshipShopItem(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|integer',
+            'price' => 'required|integer',
+        ]);
+
+        FriendshipShopItem::where('id', $request->id)->update([
+            'price' => $request->price
+        ]);
+
+        return redirect()->back()->with('success', 'Item updated!');
+    }
+
+    // --- SPECIAL DEALS ---
+    public function specialDeals()
+    {
+        $deals = SpecialDeal::orderBy('id', 'desc')->paginate(10);
+        return view('panel.special_deals', compact('deals'));
+    }
+
+    public function addSpecialDeal(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'price' => 'required|integer',
+            'start_time' => 'required|date',
+            'end_time' => 'required|date',
+            'rewards' => 'required|json',
+        ]);
+
+        SpecialDeal::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'start_time' => $request->start_time,
+            'end_time' => $request->end_time,
+            'price' => $request->price,
+            'rewards' => json_decode($request->rewards, true),
+            'is_active' => true
+        ]);
+
+        return redirect()->back()->with('success', 'Special Deal Created!');
+    }
+
+    public function deleteSpecialDeal($id)
+    {
+        SpecialDeal::destroy($id);
+        return redirect()->back()->with('success', 'Special Deal Deleted!');
+    }
+
+    // --- GIVEAWAYS ---
+    public function giveaways()
+    {
+        $giveaways = Giveaway::orderBy('id', 'desc')->paginate(10);
+        return view('panel.giveaways', compact('giveaways'));
+    }
+
+    public function addGiveaway(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string',
+            'start_at' => 'required|date',
+            'end_at' => 'required|date',
+            'prizes' => 'required|json',
+        ]);
+
+        Giveaway::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'start_at' => $request->start_at,
+            'end_at' => $request->end_at,
+            'prizes' => json_decode($request->prizes, true),
+            'requirements' => $request->requirements ? json_decode($request->requirements, true) : null,
+            'processed' => false
+        ]);
+
+        return redirect()->back()->with('success', 'Giveaway Created!');
+    }
+
+    public function deleteGiveaway($id)
+    {
+        Giveaway::destroy($id);
+        return redirect()->back()->with('success', 'Giveaway Deleted!');
+    }
+
+    // --- DAILY REWARDS (ATTENDANCE) ---
+    public function dailyRewards()
+    {
+        $rewards = AttendanceReward::orderBy('price', 'asc')->get();
+        return view('panel.daily_rewards', compact('rewards'));
+    }
+
+    public function updateDailyReward(Request $request)
+    {
+        $request->validate([
+            'price' => 'required|integer', // This is the DAY NUMBER
+            'item' => 'required|string'
+        ]);
+
+        AttendanceReward::updateOrCreate(
+            ['price' => $request->price],
+            ['item' => $request->item]
+        );
+
+        return redirect()->back()->with('success', 'Daily Reward Updated!');
+    }
+
+    public function deleteDailyReward($id)
+    {
+        AttendanceReward::destroy($id);
+        return redirect()->back()->with('success', 'Reward Deleted!');
     }
 }

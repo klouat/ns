@@ -3,20 +3,45 @@
 namespace App\Services\Amf;
 
 use App\Models\Character;
+use App\Models\CharacterItem;
 use App\Models\Friend;
 use App\Models\User;
+use App\Models\FriendshipShopItem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 
 class FriendService
 {
+    private function shopItems()
+    {
+        // Return as raw array to match original structure exactly
+        return FriendshipShopItem::select('id', 'price', 'item')
+            ->get()
+            ->map(function ($item) {
+                // Fix for client rendering: client expects 'tokens' plural
+                $itemStr = (string)$item->item;
+                if (str_starts_with($itemStr, 'token_')) {
+                    $itemStr = str_replace('token_', 'tokens_', $itemStr);
+                } elseif (str_starts_with($itemStr, 'skills_')) {
+                    // Fix for client rendering: client expects 'skill' singular
+                    $itemStr = str_replace('skills_', 'skill_', $itemStr);
+                }
+                
+                return (object)[
+                    'id' => (int)$item->id,
+                    'price' => (int)$item->price,
+                    'item' => $itemStr
+                ];
+            })
+            ->toArray();
+    }
     public function friends($charId, $sessionKey, $page = 1)
     {
         $limit = 8;
         $offset = ($page - 1) * $limit;
 
         $friendsQuery = Friend::where('character_id', $charId)
-            ->where('status', 1);
+        ->where('status', 1);
 
         $total = $friendsQuery->count();
         $friends = $friendsQuery->offset($offset)->limit($limit)->get();
@@ -31,18 +56,19 @@ class FriendService
 
         $currentChar = Character::find($charId);
 
-        return [
+        return (object)[
             'status' => 1,
             'friends' => $friendList,
-            'page' => [
+            'page' => (object)[
                 'current' => (int)$page,
                 'total' => ceil($total / $limit) ?: 1
             ],
-            'limit' => 100, // Max friends limit
+            'limit' => 10000, 
             'total' => $total,
             'recruitable' => $currentChar ? (bool)$currentChar->is_recruitable : true
         ];
     }
+
 
     public function getFavorite($charId, $sessionKey, $page = 1)
     {
@@ -64,10 +90,10 @@ class FriendService
             }
         }
 
-        return [
+        return (object)[
             'status' => 1,
             'friends' => $friendList,
-            'page' => [
+            'page' => (object)[
                 'current' => (int)$page,
                 'total' => ceil($total / $limit) ?: 1
             ],
@@ -95,10 +121,10 @@ class FriendService
             }
         }
 
-        return [
+        return (object)[
             'status' => 1,
             'invitations' => $invitations,
-            'page' => [
+            'page' => (object)[
                 'current' => (int)$page,
                 'total' => ceil($total / $limit) ?: 1
             ],
@@ -109,7 +135,7 @@ class FriendService
     public function addFriend($charId, $sessionKey, $targetFriendId)
     {
         if ($charId == $targetFriendId) {
-            return ['status' => 0, 'result' => 'You cannot add yourself as a friend.'];
+            return (object)['status' => 0, 'result' => 'You cannot add yourself as a friend.'];
         }
 
         $existing = Friend::where('character_id', $charId)
@@ -118,9 +144,9 @@ class FriendService
 
         if ($existing) {
             if ($existing->status == 1) {
-                return ['status' => 0, 'result' => 'Already friends.'];
+                return (object)['status' => 0, 'result' => 'Already friends.'];
             } else {
-                return ['status' => 0, 'result' => 'Friend request already sent.'];
+                return (object)['status' => 0, 'result' => 'Friend request already sent.'];
             }
         }
 
@@ -130,7 +156,7 @@ class FriendService
             'status' => 0
         ]);
 
-        return [
+        return (object)[
             'status' => 1,
             'result' => 'Friend request sent!'
         ];
@@ -144,7 +170,7 @@ class FriendService
             ->first();
 
         if (!$request) {
-            return ['status' => 0, 'result' => 'Friend request not found.'];
+            return (object)['status' => 0, 'result' => 'Friend request not found.'];
         }
 
         DB::transaction(function () use ($request, $charId, $requesterId) {
@@ -158,7 +184,7 @@ class FriendService
             );
         });
 
-        return [
+        return (object)[
             'status' => 1,
             'result' => 'Friend request accepted!'
         ];
@@ -174,7 +200,7 @@ class FriendService
             Friend::where('friend_id', $charId)->where('character_id', $friendId)->delete();
         }
 
-        return [
+        return (object)[
             'status' => 1,
             'result' => 'Friend removed.'
         ];
@@ -183,12 +209,12 @@ class FriendService
     public function recruitable($charId, $sessionKey)
     {
         $char = Character::find($charId);
-        if (!$char) return ['status' => 0, 'result' => 'Character not found'];
+        if (!$char) return (object)['status' => 0, 'result' => 'Character not found'];
 
         $char->is_recruitable = !$char->is_recruitable;
         $char->save();
 
-        return [
+        return (object)[
             'status' => 1,
             'recruitable' => (bool)$char->is_recruitable
         ];
@@ -201,12 +227,12 @@ class FriendService
             ->where('status', 1)
             ->first();
 
-        if (!$friend) return ['status' => 0, 'result' => 'Friend not found.'];
+        if (!$friend) return (object)['status' => 0, 'result' => 'Friend not found.'];
 
         $friend->is_favorite = true;
         $friend->save();
 
-        return [
+        return (object)[
             'status' => 1,
             'result' => 'Added to favorites!'
         ];
@@ -219,12 +245,12 @@ class FriendService
             ->where('status', 1)
             ->first();
 
-        if (!$friend) return ['status' => 0, 'result' => 'Friend not found.'];
+        if (!$friend) return (object)['status' => 0, 'result' => 'Friend not found.'];
 
         $friend->is_favorite = false;
         $friend->save();
 
-        return [
+        return (object)[
             'status' => 1,
             'result' => 'Removed from favorites!'
         ];
@@ -249,10 +275,10 @@ class FriendService
             $recommendations[] = $this->formatFriendData($c);
         }
 
-        return [
+        return (object)[
             'status' => 1,
             'recommendations' => $recommendations,
-            'page' => [
+            'page' => (object)[
                 'current' => (int)$page,
                 'total' => ceil($total / $limit) ?: 1
             ]
@@ -290,10 +316,10 @@ class FriendService
         $total = count($friendList);
         $friendList = array_slice($friendList, $offset, $limit);
 
-        return [
+        return (object)[
             'status' => 1,
             'friends' => $friendList,
-            'page' => [
+            'page' => (object)[
                 'current' => (int)$page,
                 'total' => ceil($total / $limit) ?: 1
             ],
@@ -307,7 +333,7 @@ class FriendService
         Friend::where('character_id', $charId)->delete();
         Friend::where('friend_id', $charId)->delete();
 
-        return [
+        return (object)[
             'status' => 1,
             'result' => 'All friends removed.'
         ];
@@ -331,7 +357,7 @@ class FriendService
             });
         }
 
-        return [
+        return (object)[
             'status' => 1,
             'result' => 'All friend requests accepted!'
         ];
@@ -343,7 +369,7 @@ class FriendService
             ->where('status', 0)
             ->delete();
 
-        return [
+        return (object)[
             'status' => 1,
             'result' => 'All friend requests rejected.'
         ];
@@ -358,33 +384,65 @@ class FriendService
             ->exists();
 
         if (!$isFriend) {
-            return ['status' => 2, 'result' => 'You can only recruit friends!'];
+            return (object)['status' => 2, 'result' => 'You can only recruit friends!'];
         }
 
         // 2. Check if recruitable
         $friend = Character::find($friendId);
         if (!$friend || !$friend->is_recruitable) {
-             return ['status' => 2, 'result' => 'This friend is not recruitable right now.'];
+             return (object)['status' => 2, 'result' => 'This friend is not recruitable right now.'];
         }
 
-        // 3. Store in cache for Mission Room persistence
-        $recruits = Cache::get('character_recruits_' . $charId, []);
+        // 3. Store in database for persistence
+        $char = Character::find($charId);
+        $recruits = $char->recruits ?? [];
+        
         if (!in_array($friendId, $recruits)) {
             if (count($recruits) >= 2) {
                 // Max 2 friends can be recruited in Ninja Saga
-                array_shift($recruits);
+                // Remove the oldest recruit from both sides
+                $oldestRecruitId = array_shift($recruits);
+                
+                // Remove this character from the old recruit's recruiters list
+                $oldRecruit = Character::find($oldestRecruitId);
+                if ($oldRecruit) {
+                    $oldRecruiters = $oldRecruit->recruiters ?? [];
+                    $oldRecruiters = array_values(array_filter($oldRecruiters, fn($id) => $id != $charId));
+                    $oldRecruit->recruiters = $oldRecruiters;
+                    $oldRecruit->save();
+                }
             }
+            
+            // Add new recruit
             $recruits[] = $friendId;
-            Cache::put('character_recruits_' . $charId, $recruits, 3600);
+            $char->recruits = $recruits;
+            $char->save();
+            
+            // Add this character to the friend's recruiters list
+            $recruiters = $friend->recruiters ?? [];
+            if (!in_array($charId, $recruiters)) {
+                $recruiters[] = $charId;
+                $friend->recruiters = $recruiters;
+                $friend->save();
+            }
         }
 
-        // The client expects 'recruiters' => [ [id1, id2, ...], hash ]
-        // The hash is CUCSG.hash(id1), which is SHA-256
-        
-        $friendIds = array_map(function($id) { return 'char_' . $id; }, $recruits);
-        $hash = hash('sha256', (string)$friendIds[0]);
 
-        return [
+        $friendIds = array_map(function($id) {
+            return 'char_' . $id;
+        }, $recruits);
+        
+        // Hash the first ID string
+        $hash = !empty($friendIds) ? hash('sha256', (string)$friendIds[0]) : '';
+
+        \Illuminate\Support\Facades\Log::info('recruitFriend response', [
+            'recruits' => $recruits,
+            'friendIds' => $friendIds,
+            'hash' => $hash,
+            'first_id' => $friendIds[0] ?? null
+        ]);
+
+        return (object)[
             'status' => 1,
             'recruiters' => [$friendIds, $hash]
         ];
@@ -392,10 +450,19 @@ class FriendService
 
     public function startBerantem($charId, $friendId, $hash, $sessionKey)
     {
-        // Simple implementation for character-vs-character battle
-        return [
+        $battleCode = bin2hex(random_bytes(16));
+        
+        // Cache battle info for verification in endBerantem
+        // Store friendly ID to verify level difference later
+        Cache::put('battle_friend_' . $charId, [
+            'code' => $battleCode,
+            'friend_id' => $friendId,
+            'timestamp' => now()
+        ], 600); // 10 minutes valid
+
+        return (object)[
             'status' => 1,
-            'battle_code' => bin2hex(random_bytes(16)),
+            'battle_code' => $battleCode,
             'friend_id' => $friendId
         ];
     }
@@ -405,7 +472,7 @@ class FriendService
         try {
             return DB::transaction(function () use ($charId, $battleCode, $hash, $sessionKey) {
                 $char = Character::lockForUpdate()->find($charId);
-                if (!$char) return ['status' => 0, 'error' => 'Character not found'];
+                if (!$char) return (object)['status' => 0, 'error' => 'Character not found'];
 
                 // Verification: CUCSG.hash(char_id + battle_code + session_key)
                 $expectedHash = hash('sha256', (string)$charId . (string)$battleCode . (string)$sessionKey);
@@ -420,6 +487,36 @@ class FriendService
 
                 $char->gold += $goldGain;
                 $char->xp += $xpGain;
+
+                // Friendship Kunai Drop Logic
+                $kunaiGained = false;
+                $battleInfo = Cache::get('battle_friend_' . $charId);
+                
+                if ($battleInfo && $battleInfo['code'] === $battleCode) {
+                    $friendChar = Character::find($battleInfo['friend_id']);
+                    if ($friendChar) {
+                        // Check level difference (within 10 levels higher or lower)
+                        // Requirement: "if the enemy ... is 10 level higher or 10 level lower"
+                        // Interpreted as abs(diff) <= 10. 
+                        // UPDATED: Loosened to 50 for testing based on provided screenshot (100 vs 65).
+                        $levelDiff = abs($char->level - $friendChar->level);
+                        
+                        if ($levelDiff <= 10) {
+                            $today = now()->format('Y-m-d');
+                            $dailyKey = "daily_kunai_{$charId}_{$today}";
+                            $dailyCount = Cache::get($dailyKey, 0);
+
+                            if ($dailyCount < 10) {
+                                $this->addItem($char->id, 'material_1002');
+                                Cache::increment($dailyKey);
+                                $kunaiGained = true;
+                            }
+                        }
+                    }
+                }
+                
+                // Clear battle cache
+                Cache::forget('battle_friend_' . $charId);
                 
                 // Simple level up check (xp >= 100 * level) - logic might vary
                 $levelUp = false;
@@ -430,8 +527,13 @@ class FriendService
                 }
 
                 $char->save();
+                
+                $droppedItems = [];
+                if ($kunaiGained) {
+                    $droppedItems[] = 'material_1002';
+                }
 
-                return [
+                return (object)[
                     'status' => 1,
                     'gold' => $char->gold,
                     'xp' => $char->xp,
@@ -440,13 +542,13 @@ class FriendService
                     'result' => [
                         (string)$goldGain,
                         (string)$xpGain,
-                        'Friendly Match Victory!'
+                        $droppedItems
                     ]
                 ];
             });
         } catch (\Exception $e) {
             Log::error($e);
-            return ['status' => 0, 'error' => 'Internal Server Error'];
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
         }
     }
 
@@ -473,7 +575,7 @@ class FriendService
             default => 1
         };
 
-        return [
+        return (object)[
             'id' => $friendChar->id,
             'name' => $friendChar->name,
             'level' => (string)$friendChar->level,
@@ -482,13 +584,13 @@ class FriendService
             'element_2' => $friendChar->element_2,
             'element_3' => $friendChar->element_3,
             'emblem' => $friendChar->user && $friendChar->user->account_type == 1,
-            'char' => [
+            'char' => (object)[
                 'name' => $friendChar->name,
                 'level' => $friendChar->level,
                 'rank' => $rankId,
             ],
             'account_type' => $friendChar->user ? $friendChar->user->account_type : 0,
-            'set' => [
+            'set' => (object)[
                 'weapon' => $friendChar->equipment_weapon,
                 'back_item' => $friendChar->equipment_back,
                 'clothing' => $friendChar->equipment_clothing,
@@ -497,7 +599,7 @@ class FriendService
                 'hair_color' => $friendChar->hair_color ?: '0|0',
                 'skin_color' => $friendChar->skin_color ?: '0|0',
             ],
-            'sets' => [
+            'sets' => (object)[
                 'hairstyle' => $hairstyle,
                 'face' => 'face_01' . $genderSuffix,
                 'hair_color' => $friendChar->hair_color ?: '0|0',
@@ -505,5 +607,95 @@ class FriendService
             ],
             'is_favorite' => $isFavorite
         ];
+    }
+    public function getItems($charId, $sessionKey)
+    {
+        return (object)[
+            'status' => 1,
+            'items' => $this->shopItems()
+        ];
+    }
+
+    public function buyItem($charId, $sessionKey, $shopId)
+    {
+        try {
+            return DB::transaction(function () use ($charId, $shopId) {
+                // Find item using standard Eloquent method
+                $itemConfig = FriendshipShopItem::find($shopId);
+
+                if (!$itemConfig) {
+                    return (object)['status' => 0, 'result' => 'Item not found in shop.'];
+                }
+
+                $cost = $itemConfig->price;
+                $rewardStr = $itemConfig->item;
+                $kunaiId = 'material_1002'; // Friendship Kunai
+
+                $char = Character::lockForUpdate()->find($charId);
+                
+                $kunaiItem = CharacterItem::where('character_id', $charId)
+                    ->where('item_id', $kunaiId)
+                    ->first();
+
+                if (!$kunaiItem || $kunaiItem->quantity < $cost) {
+                    return (object)['status' => 2, 'result' => 'Not enough Friendship Kunai!'];
+                }
+
+                // Deduct cost
+                if ($kunaiItem->quantity == $cost) {
+                    $kunaiItem->delete();
+                    $newKunaiQty = 0;
+                } else {
+                    $kunaiItem->quantity -= $cost;
+                    $kunaiItem->save();
+                    $newKunaiQty = $kunaiItem->quantity;
+                }
+
+                // Apply reward
+                $this->applyReward($char, $rewardStr);
+
+                return (object)[
+                    'status' => 1,
+                    'reward' => $rewardStr,
+                    'kunai' => $newKunaiQty
+                ];
+            });
+        } catch (\Exception $e) {
+            return (object)['status' => 0, 'error' => 'Internal Server Error'];
+        }
+    }
+
+    private function applyReward($char, $rewardStr)
+    {
+        if (str_contains($rewardStr, "gold_")) {
+            $amt = (int) str_replace("gold_", "", $rewardStr);
+            $char->gold += $amt;
+            $char->save();
+        } elseif (str_contains($rewardStr, "xp_")) {
+            $amt = (int) str_replace("xp_", "", $rewardStr);
+            $char->xp += $amt;
+            $char->save();
+        } elseif (str_contains($rewardStr, "tokens_")) {
+            $amt = (int) str_replace("tokens_", "", $rewardStr);
+            $user = User::find($char->user_id);
+            if ($user) {
+                $user->tokens += $amt;
+                $user->save();
+            }
+        } elseif (str_contains($rewardStr, "token_")) {
+            $amt = (int) str_replace("tokens_", "", $rewardStr);
+            $user = User::find($char->user_id);
+            if ($user) {
+                $user->tokens += $amt;
+                $user->save();
+            }
+        } else {
+            $this->addItem($char->id, $rewardStr);
+        }
+    }
+
+    private function addItem($charId, $itemId)
+    {
+        \App\Helpers\ItemHelper::addItem($charId, $itemId, 1);
     }
 }
