@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `characters` (
   `user_id` bigint unsigned NOT NULL,
   `name` varchar(255) NOT NULL,
   `level` int NOT NULL DEFAULT '1',
-  `xp` int NOT NULL DEFAULT '0',
+  `xp` bigint unsigned NOT NULL DEFAULT '0',
   `gender` int NOT NULL DEFAULT '0',
   `hair_style` varchar(255) DEFAULT NULL,
   `hair_color` varchar(255) DEFAULT NULL,
@@ -120,10 +120,11 @@ CREATE TABLE IF NOT EXISTS `characters` (
   `character_ss` int NOT NULL DEFAULT '0',
   `equipped_senjutsu_skills` text,
   `name_color` varchar(255) DEFAULT NULL,
+  `equipped_animations` json DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `characters_user_id_foreign` (`user_id`),
   CONSTRAINT `characters_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Data exporting was unselected.
 
@@ -143,7 +144,23 @@ CREATE TABLE IF NOT EXISTS `character_attendance` (
   PRIMARY KEY (`id`),
   KEY `character_attendance_character_id_foreign` (`character_id`),
   CONSTRAINT `character_attendance_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table ninjasage.character_chunin_progress
+CREATE TABLE IF NOT EXISTS `character_chunin_progress` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `character_id` bigint unsigned NOT NULL,
+  `current_stage` int NOT NULL DEFAULT '1',
+  `stage_status` tinyint NOT NULL DEFAULT '0',
+  `last_attempt_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `character_chunin_progress_character_id_foreign` (`character_id`),
+  CONSTRAINT `character_chunin_progress_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -159,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `character_confronting_death` (
   PRIMARY KEY (`id`),
   KEY `character_confronting_death_character_id_foreign` (`character_id`),
   CONSTRAINT `character_confronting_death_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -272,7 +289,21 @@ CREATE TABLE IF NOT EXISTS `character_items` (
   PRIMARY KEY (`id`),
   KEY `character_items_character_id_foreign` (`character_id`),
   CONSTRAINT `character_items_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10095 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table ninjasage.character_jounin_progress
+CREATE TABLE IF NOT EXISTS `character_jounin_progress` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `character_id` bigint unsigned NOT NULL,
+  `current_stage` int NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `character_jounin_progress_character_id_foreign` (`character_id`),
+  CONSTRAINT `character_jounin_progress_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -289,6 +320,18 @@ CREATE TABLE IF NOT EXISTS `character_limited_stores` (
   PRIMARY KEY (`id`),
   KEY `character_limited_stores_character_id_foreign` (`character_id`),
   CONSTRAINT `character_limited_stores_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table ninjasage.character_mission_spins
+CREATE TABLE IF NOT EXISTS `character_mission_spins` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `character_id` bigint unsigned NOT NULL,
+  `spins_available` int NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
@@ -318,7 +361,21 @@ CREATE TABLE IF NOT EXISTS `character_moyai_gacha` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `character_moyai_gacha_character_id_unique` (`character_id`),
   CONSTRAINT `character_moyai_gacha_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table ninjasage.character_ninjatutor_progress
+CREATE TABLE IF NOT EXISTS `character_ninjatutor_progress` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `character_id` bigint unsigned NOT NULL,
+  `current_stage` int NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `character_ninjatutor_progress_character_id_foreign` (`character_id`),
+  CONSTRAINT `character_ninjatutor_progress_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -335,7 +392,7 @@ CREATE TABLE IF NOT EXISTS `character_pets` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -365,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `character_skills` (
   PRIMARY KEY (`id`),
   KEY `character_skills_character_id_foreign` (`character_id`),
   CONSTRAINT `character_skills_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1136 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2337 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Data exporting was unselected.
 
@@ -380,7 +437,21 @@ CREATE TABLE IF NOT EXISTS `character_skill_sets` (
   PRIMARY KEY (`id`),
   KEY `character_skill_sets_character_id_foreign` (`character_id`),
   CONSTRAINT `character_skill_sets_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table ninjasage.character_spjounin_progress
+CREATE TABLE IF NOT EXISTS `character_spjounin_progress` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `character_id` bigint unsigned NOT NULL,
+  `current_stage` int NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `character_spjounin_progress_character_id_foreign` (`character_id`),
+  CONSTRAINT `character_spjounin_progress_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -410,7 +481,7 @@ CREATE TABLE IF NOT EXISTS `character_welcome_logins` (
   PRIMARY KEY (`id`),
   KEY `character_welcome_logins_character_id_foreign` (`character_id`),
   CONSTRAINT `character_welcome_logins_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -434,7 +505,7 @@ CREATE TABLE IF NOT EXISTS `crews` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `crews_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -462,7 +533,7 @@ CREATE TABLE IF NOT EXISTS `crew_castle_stats` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `crew_castle_stats_crew_id_castle_id_unique` (`crew_id`,`castle_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -474,7 +545,7 @@ CREATE TABLE IF NOT EXISTS `crew_history_logs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -501,7 +572,7 @@ CREATE TABLE IF NOT EXISTS `crew_members` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `crew_members_crew_id_char_id_unique` (`crew_id`,`char_id`),
   UNIQUE KEY `crew_members_char_id_unique` (`char_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -607,7 +678,7 @@ CREATE TABLE IF NOT EXISTS `dragon_gacha_histories` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -718,7 +789,7 @@ CREATE TABLE IF NOT EXISTS `hunting_house_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -804,7 +875,7 @@ CREATE TABLE IF NOT EXISTS `material_market_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -814,7 +885,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Data exporting was unselected.
 
@@ -863,7 +934,7 @@ CREATE TABLE IF NOT EXISTS `moyai_gacha_history` (
   KEY `moyai_gacha_history_character_id_foreign` (`character_id`),
   KEY `moyai_gacha_history_obtained_at_index` (`obtained_at`),
   CONSTRAINT `moyai_gacha_history_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=256 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=262 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -925,7 +996,7 @@ CREATE TABLE IF NOT EXISTS `pvp_stats` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `pvp_stats_character_id_unique` (`character_id`),
   CONSTRAINT `pvp_stats_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -964,7 +1035,7 @@ CREATE TABLE IF NOT EXISTS `shadow_war_battles` (
   CONSTRAINT `shadow_war_battles_attacker_id_foreign` FOREIGN KEY (`attacker_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE,
   CONSTRAINT `shadow_war_battles_defender_id_foreign` FOREIGN KEY (`defender_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE,
   CONSTRAINT `shadow_war_battles_season_id_foreign` FOREIGN KEY (`season_id`) REFERENCES `shadow_war_seasons` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -981,7 +1052,7 @@ CREATE TABLE IF NOT EXISTS `shadow_war_enemy_cache` (
   KEY `shadow_war_enemy_cache_season_id_foreign` (`season_id`),
   CONSTRAINT `shadow_war_enemy_cache_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE,
   CONSTRAINT `shadow_war_enemy_cache_season_id_foreign` FOREIGN KEY (`season_id`) REFERENCES `shadow_war_seasons` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -1003,7 +1074,7 @@ CREATE TABLE IF NOT EXISTS `shadow_war_players` (
   KEY `shadow_war_players_season_id_squad_trophy_index` (`season_id`,`squad`,`trophy`),
   CONSTRAINT `shadow_war_players_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE,
   CONSTRAINT `shadow_war_players_season_id_foreign` FOREIGN KEY (`season_id`) REFERENCES `shadow_war_seasons` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -1028,7 +1099,7 @@ CREATE TABLE IF NOT EXISTS `shadow_war_presets` (
   PRIMARY KEY (`id`),
   KEY `shadow_war_presets_character_id_index` (`character_id`),
   CONSTRAINT `shadow_war_presets_character_id_foreign` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -1060,7 +1131,7 @@ CREATE TABLE IF NOT EXISTS `special_deals` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Data exporting was unselected.
 
@@ -1082,7 +1153,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
   UNIQUE KEY `users_username_unique` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Data exporting was unselected.
 
